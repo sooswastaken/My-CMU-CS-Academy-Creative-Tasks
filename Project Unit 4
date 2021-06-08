@@ -1,0 +1,920 @@
+##### IF YOU'RE HAVING A HARD TIME FIND THINGS, LOOK FOR THE ORANGE LINES ONLY!!!!!! Sorry I submitted late
+##### KeyPress - line 475
+##### KeyRelease - line 729
+##### If-elif-else - starting from line 476
+##### Methods 
+#####  1. toBack() - starting from line 81
+#####  2. toFront() - starting from line 552
+#####  3. app.stop() - line 577
+#####  4. hitsShape() - line 812
+
+#Press up or down to change the time
+#Press f to see the flash and 1 or 2 or 3 to choose your monster 
+#Hit the light if you want to make the monster dissapear in front of the boy.
+
+##### Custom properties
+###Set-ups
+app.start=True
+app.oneoclock=False
+app.twooclock=False
+app.threeoclock=False
+
+app.time=0
+app.hitCounter = 0
+
+#Background
+#The sky
+app.background='midnightBlue'
+
+#The rocks
+#Behind
+Polygon(333,272,358,219,372,211,387,206,400,215,400,272,fill=gradient(rgb(54,54,64),rgb(45,45,53),start='top'))
+
+#Lighthouse
+#Bottom white 
+Polygon(323,272,331,188,377,188,388,272,fill=gradient(rgb(156,156,156),rgb(169,169,169),rgb(169,169,169),start='bottom'))
+#Red middle
+Polygon(331,189,377,189,368,110,340,110,fill=gradient(rgb(132,28,28),rgb(153,31,31),start='bottom'))
+#Yellow middle 
+Polygon(332,49,343,109,364,109,373,45,fill=gradient(rgb(190,162,66),rgb(160,136,54),rgb(173,148,63),rgb(173,148,63)))
+#white top
+Rect(331,98,45,15,fill=gradient(rgb(156,156,156),rgb(169,169,169),rgb(169,169,169),start='bottom'))
+#Red top
+Polygon(353,30,316,53,390,53,fill=gradient(rgb(132,28,28),rgb(153,31,31),start='bottom'))
+
+#Asmosphere back
+Rect(0,0,400,400,fill='midnightBlue',opacity=12)
+
+#Front
+Polygon(299,273,316,236,335,243,380,273,fill=gradient(rgb(56,56,69),rgb(65,65,80),start='bottom'))
+
+#The sea
+Polygon(0,270,400,270,400,370,0,370,fill=gradient(rgb(3,73,76),rgb(3,59,61),rgb(3,59,61),start='top'))
+
+#Sea details
+def makeSeaDetails (centerX,centerY,width):
+    Oval(centerX,centerY,width,3,fill='white',opacity=6)
+    
+makeSeaDetails(234,275,80)
+makeSeaDetails(237,281,60)
+makeSeaDetails(238,287,40)
+makeSeaDetails(241,293,20)
+
+#Sand
+Polygon(0,400,0,378,219,310,240,307,310,285,400,304,400,400,fill=rgb(120,89,60))
+#Background sand's shadow
+Polygon(139,336,219,310,240,307,310,285,400,304,400,314,298,299,177,334,fill=rgb(59,43,29),opacity=13)
+
+#Sign
+sign = Line(346,189,332,350,fill=rgb(113,113,113),lineWidth=3)
+sign2 = Circle(347,189,23,fill=rgb(173,50,50),border=rgb(153,45,45),borderWidth=4.5)
+sign3 = Line(362,176,331,203,fill=rgb(153,45,45),lineWidth=4.5)
+sign4 = Line(334,173,359,206,fill=rgb(153,45,45),lineWidth=4.5)
+sign5 = Label('Help',347,188,font='monospace',size=11,fill=rgb(244,81,30),rotateAngle=4,border='yellow',borderWidth=0.2)
+
+sign6 = Line(346,186,332,312,fill=rgb(113,113,113),lineWidth=3)
+sign7 = Circle(347,186,23,fill=rgb(173,50,50),border=rgb(153,45,45),borderWidth=4.5)
+sign8 = Line(362,173,331,200,fill=rgb(153,45,45),lineWidth=4.5)
+sign9 = Line(334,170,359,203,fill=rgb(153,45,45),lineWidth=4.5)
+sign10 = Label('Help',347,185,font='monospace',size=11,fill=rgb(244,81,30),rotateAngle=4,border='yellow',borderWidth=0.2)
+
+sign6.toBack()
+sign7.toBack()
+sign8.toBack()
+sign9.toBack()
+sign10.toBack()
+
+#Back sand
+Polygon(0,317,50,289,118,301,224,352,42,366,0,372,fill=rgb(151,113,76)) 
+
+#Back sand's shadow
+Polygon(0,317,50,289,118,301,224,352,fill=rgb(124,93,64),opacity=70)
+
+#Shipwreck
+#The hidden top
+Polygon(0,84,38,72,45,156,0,161,fill=gradient(rgb(55,71,79),rgb(41,53,59),start='top'))
+
+#Details of the hidden top
+Polygon(0,84,38,72,42,120,0,104,fill=rgb(43,55,61))
+
+#Window for the top
+Oval(40,115,17,83.9,fill=rgb(38,50,56),rotateAngle=355.97)
+Oval(40,115,11,75.9,fill=rgb(28,37,41),rotateAngle=355.99)
+
+#Top's shadow
+Polygon(0,84,38,72,40,76,44,85,46,94,46,97,0,138,opacity=10)
+
+#Flag
+Polygon(91,92,93,141,82,112,82,128,71,118,67,130,62,123,62,131,49,121,fill=gradient(rgb(147,147,147),rgb(151,151,151),start='top'))
+#Flag details
+Polygon(91,92,92,117,84,106,83,110,79,107,78,114,70,111,67,118,61,117,69,121,49,121,fill=rgb(128,128,128))
+#Flag's shadow 
+Polygon(91,92,49,121,92,110,opacity=12)
+#Flag's stick
+Line(0,155,92,91,fill=rgb(66,23,16),lineWidth=3.5)
+
+#Balcony
+def drawLine(x1,y1,x2,y2):
+    Line(x1,y1,x2,y2,lineWidth=1.8,fill=rgb(125,107,9))
+    
+def drawLine2(X1,Y1,X2,Y2):
+    Line(X1,Y1,X2,Y2,lineWidth=1.9,fill=rgb(101,87,9))
+
+#Back line
+drawLine2(153,177,152,215)
+drawLine2(91,195,90,234)
+drawLine(27,215,26,253)
+
+#Front line
+drawLine(196,169,192,201)
+drawLine(144,189,143,217)
+drawLine(80,210,79,237)
+drawLine(18,228,17,256)
+Oval(68.05,207.8,270,13,fill=None,border=gradient(rgb(101,87,9),rgb(125,107,9),rgb(125,107,9),start='top-left'),borderWidth=1.8,rotateAngle=343)
+
+#Ship
+Polygon(0,257,195,197,167,370,0,366,fill=gradient(rgb(55,71,79),rgb(41,53,59),start='top'))
+#Windows
+#1
+Circle(101,272,23,fill=rgb(38,50,56))
+Circle(101,272,17.8,fill=rgb(28,37,41))
+#2
+Circle(7,300,23,fill=rgb(38,50,56))
+Circle(7,300,17.8,fill=rgb(28,37,41))
+
+#Details
+#Boat shadow
+Polygon(58,239,195,197,179,295,181,217,fill=rgb(39,54,61))
+
+#Windows' details
+def makeScrew(centerX,centerY,color):
+    Circle(centerX,centerY,1.4,fill=color)
+
+def makeBoatScrew(centerx,centery):
+    makeScrew(centerx,centery,rgb(86,86,86))
+
+#1
+makeBoatScrew(97,252)
+makeBoatScrew(114,256)
+makeBoatScrew(121,271)
+makeBoatScrew(114,288)
+makeBoatScrew(96,291)
+makeBoatScrew(82,280)
+makeBoatScrew(83,262)
+
+#2
+makeBoatScrew(1,280)
+makeBoatScrew(18,283)
+makeBoatScrew(26,296)
+makeBoatScrew(20,314)
+makeBoatScrew(7,320)
+
+#Bottom of the boat
+Polygon(167,370,172,336,0,350,0,366,fill=rgb(48,63,70))
+
+#Boat's shadow
+Polygon(0,257,195,197,167,370,159,247,0,290,opacity=10)
+
+#Very front sand
+Polygon(0,400,0,358,88,337,163,352,211,347,227,349,268,338,325,324,369,331,400,334,400,400,fill=gradient(rgb(160,119,80),rgb(192,144,96),start='bottom'))
+#Shadow of the front sand
+Polygon(0,358,88,337,163,352,211,347,227,349,268,338,325,324,369,331,400,334,400,346,0,400,fill=rgb(157,118,78),opacity=70)
+
+#Moon
+moon = Circle(47,32,19,fill=gradient('gray',rgb(164,164,164),start='right'),opacity=30)
+
+#Stars
+star1 = Star(93,48,5,4,fill='snow',opacity=30)
+star2 = Star(103,33,3.8,4,fill='snow', opacity=30)
+
+def drawClouds(centerX,centerY):
+    Oval(centerX,centerY,68,12,fill='white',opacity=11)
+    
+def groupOfClouds(centerX,centerY):
+    drawClouds(centerX-12,centerY+6)  
+    drawClouds(centerX+10,centerY-3)
+    
+groupOfClouds(280,41)
+groupOfClouds(218,81)
+
+#The children
+#Girl
+#Ponytail
+Polygon(292,257,280,260,282,268,291,258,fill=rgb(46,46,46))
+
+#Head
+Circle(305,253,16,fill=rgb(247,198,177))
+
+#Left leg
+Polygon(283,310,274,337,283,334,289,319,fill=rgb(247,198,177))
+
+#Right leg
+Polygon(306,310,304,329,297,331,297,318,fill=rgb(247,198,177))
+
+#Left arm
+Polygon(296,275,264,291,265,295,291,284,fill=rgb(247,198,177))
+#Left hand
+Oval(266,292,8,5,fill=rgb(247,198,177),rotateAngle=60)
+
+#Right arm
+gArm = Polygon(312,280,328,302,326,305,309,288,fill=rgb(247,198,177))
+
+gArm2 = Polygon(307,278,336,260,336,267,310,288,fill=rgb(247,198,177),visible=False)
+#Right hand
+gHand = Oval(328,305,7,4,fill=rgb(247,198,177),rotateAngle=130)
+gHand2 = Circle(339,263,5,fill=rgb(247,198,177),visible=False)
+
+#Hair 
+Polygon(313,246,304,248,307,243,300,248,302,243,292,252,290,249,286,259,288,240,294,235,304,231,313,234,321,241,323,251,318,265,316,249,314,254,314,246,fill=rgb(46,46,46))
+
+#Face details
+#Eyes
+gEye1 = Line(294,250,302,255)
+gEye2 = Line(308,255,317,252)
+
+gEye3 = Circle(312,254,1,visible=False)
+gEye4 = Circle(298,252,1,visible=False)
+
+gEye5 = Circle(298,253,4,visible=False)
+gEye6 = Circle(298,253,2,fill='white',visible=False)
+gEye7 = Circle(311,255,4,visible=False)
+gEye8 = Circle(311,255,2,fill='white',visible=False)
+
+#Eyebrows
+gEyeBrown = Line(301,246,303,250,visible=False)
+gEyeBrown2 = Line(311,247,307,251,visible=False)
+
+#Mouth
+gMouth = Line(300,261,309,260,lineWidth=1)
+gMouth2 = Oval(305,263,10,3,rotateAngle=350,visible=False)
+
+#Droplet
+Oval(294,257,3,4,fill=gradient('blue',rgb(247,198,177),rgb(247,198,177),start='bottom'))
+
+#Shorts
+Polygon(285,304,275,325,290,326,294,318,296,324,308,323,308,303,fill=rgb(92,177,141))
+
+#Sleeve (right)
+gSleeve = Polygon(309,275,320,287,318,292,308,294,fill=rgb(179,240,214))
+gSleeve2 = Polygon(307,277,316,270,321,284,312,289,fill=rgb(179,240,214),visible=False)
+
+#Front shirt
+Polygon(292,278,280,310,308,309,314,283,fill=rgb(193,255,229))
+Circle(302,285,12,fill=rgb(193,255,229))
+
+#Sleeve (left)
+Polygon(296,274,280,281,282,288,289,289,fill=rgb(179,240,214))
+
+#Girl's thought
+gThought = Label('?',278,247,fill='white',font='monospace',size=13)
+
+#Boy
+#Shorts
+Polygon(236,377,217,376,215,400,237,400,fill=rgb(0,84,70))
+
+#Head
+Circle(233,316,17,fill=rgb(249,211,195))
+
+#Hair
+Polygon(217,306,224,312,224,308,230,317,232,313,235,322,238,321,242,332,247,327,251,321,252,313,250,305,244,299,238,297,230,296,220,302,fill=rgb(201,97,82))
+
+#Face details
+#Eyes
+Circle(220,314,5,fill='white')
+bEye = Circle(217,314,3)
+
+#Shirt
+Circle(231,350,12,fill=rgb(233,233,210))
+Polygon(220,344,211,390,240,384,243,350,fill=rgb(233,233,210))
+
+#Holding arm
+Polygon(230,347,193,352,194,357,224,355,fill=rgb(249,211,195))
+
+#Flashlight
+Oval(171,353,6,7,fill=rgb(255,205,0))
+Polygon(192,352,180,352,180,356,192,356,fill=rgb(21,21,21))
+Polygon(180,352,170,346,170,360,180,356,fill=rgb(21,21,21))
+
+#Holding hand
+Oval(193,354,6,9,fill=rgb(249,211,195))
+
+#Sleeve
+Circle(232,351,6,fill=rgb(209,209,191))
+Polygon(231,345,217,346,215,360,232,357,fill=rgb(209,209,191))
+
+#Sleeve deco
+Line(218,346,216,360,fill=rgb(124,195,188),lineWidth=4)
+
+###The shield thing
+shield = Polygon(154,233,166,233,166,263,149,263,fill=rgb(199,18,18),visible=False)
+shield2 = Line(152,256,164,256,fill='gold',visible=False)
+shield3 = Line(155,237,164,237,fill='gold',visible=False)
+shield4 = Circle(159,246,3,fill='gold',visible=False)
+
+
+###Night
+night = Rect(0,0,400,400,opacity=71)
+night2 = Rect(0,0,400,400,fill=gradient('black','black','black','black',rgb(0,248,237)),opacity=71,visible=False)
+
+#Moon 2 
+Circle(47,32,19,fill=gradient('snow','white',start='right'),opacity=50)
+
+#Stars 2 
+Star(93,48,5,4,fill='snow',opacity=40)
+Star(103,33,3.8,4,fill='snow',opacity=40)
+
+###Light 2 (for the lighthouse)
+lighthouse = Polygon(332,52,371,52,365,97,341,97,fill=gradient('yellow',rgb(255,208,46)),opacity=40)
+
+###Flashlight light 1
+flashlight1 = Oval(65,343,25,100,fill='gold',opacity=50,rotateAngle=3,visible=False)
+
+###All monsters
+###The eyeball
+#White thing
+eyeball = Circle(75,346,24,fill=gradient(rgb(234,202,202),rgb(240,228,192),rgb(240,228,192),start='left'),opacity=88)
+#Eye
+eyeballEye = Circle(83,340,9,fill=rgb(37,23,5),opacity=88)
+eyeballEye2 = Circle(85,339,4,fill=rgb(240,228,192),opacity=88)
+#Details
+eyeballDetail = Line(59,362,62,352,fill=rgb(184,0,0),lineWidth=1,opacity=50)
+eyeballDetail2 = Line(62,352,71,347,fill=rgb(184,0,0),lineWidth=1,opacity=50)
+eyeballDetail3 = Line(64,346,66,340,fill=rgb(184,0,0),lineWidth=1,opacity=50)
+eyeballDetail4 = Line(79,366,77,358,fill=rgb(184,0,0),lineWidth=1,opacity=50)
+eyeballDetail5 = Line(80,356,83,353,fill=rgb(184,0,0),lineWidth=1,opacity=50)
+eyeballDetail6 = Line(94,352,92,349,fill=rgb(184,0,0),lineWidth=1,opacity=50)
+eyeballDetail7 = Line(96,338,94,338,fill=rgb(184,0,0),lineWidth=1,opacity=50)
+eyeballDetail8 = Line(66,326,72,326,fill=rgb(184,0,0),lineWidth=1,opacity=50)
+eyeballDetail9 = Line(72,326,72,331,fill=rgb(184,0,0),lineWidth=1,opacity=50)
+eyeballDetail10 = Line(56,337,62,334,fill=rgb(184,0,0),lineWidth=1,opacity=50)
+eyeballDetail11 = Line(56,337,58,345,fill=rgb(184,0,0),lineWidth=1,opacity=50)
+
+##### A METHOD IS HERE                                                          M E T H O D   IS   H E R E  
+eyeball.toBack()
+eyeballEye.toBack()
+eyeballEye2.toBack()
+eyeballDetail.toBack()
+eyeballDetail2.toBack()
+eyeballDetail3.toBack()
+eyeballDetail4.toBack()
+eyeballDetail5.toBack()
+eyeballDetail6.toBack()
+eyeballDetail7.toBack()
+eyeballDetail8.toBack()
+eyeballDetail9.toBack()
+eyeballDetail10.toBack()
+eyeballDetail11.toBack()
+
+###The woman ghost
+#Woman hand right
+womanHandRight = Polygon(74,347,96,347,96,337,100,348,75,356,fill=rgb(252,252,252),opacity=40)
+#Woman body
+womanBody = Polygon(70,321,50,380,41,373,33,376,30,371,34,381,41,380,52,391,79,386,78,343,fill=rgb(252,252,252),opacity=45)
+#Woman head 
+womanHead = Oval(78,322,20,48,fill=rgb(252,252,252))
+womanHair = Polygon(84,295,90,308,91,320,85,349,84,302,86,310,77,302,79,309,73,304,73,315,69,373,67,324,63,315,67,307,72,298,84,295)
+#Woman eyes
+womanEye1 = Circle(77,315,1)
+womanEye2 = Circle(81,312,1)
+#Woman mouth and tounge
+womanMouth = Polygon(76,319,83,316,81,344,75,345)
+womanTongue = Polygon(90,351,76,330,75,344,fill=rgb(158,0,0))
+#Woman hand (left)
+womanHandLeft = Polygon(64,346,58,367,66,359,fill=rgb(110,109,119),opacity=40)
+
+####### METHOD IS HERE                                                          M E T H O D   I S   H E R E 
+womanHandRight.toBack()
+womanBody.toBack()
+womanHead.toBack()
+womanHair.toBack()
+womanEye1.toBack()
+womanEye2.toBack()
+womanMouth.toBack()
+womanTongue.toBack()
+womanHandLeft.toBack()
+
+###Bill Cipher :)))
+#Left leg
+billLeftLeg = Line(69,356,69,376,fill=rgb(24,24,24))
+billLeftLeg2 = Line(68,376,74,376,fill=rgb(24,24,24))
+#Right leg
+billRightLeg = Line(84,356,85,376,fill=rgb(24,24,24))
+billRightLeg2 = Line(84,376,90,376,fill=rgb(24,24,24))
+#Right Arm
+billRightArm = Line(92,345,92,367,fill=rgb(24,24,24))
+billRightArm2 = Line(91,367,97,367,fill=rgb(24,24,24))
+
+billFire = Polygon(111,344,104,339,105,330,106,337,107,336,105,332,109,331,106,334,110,334,118,330,117,335,121,339,115,346,fill=gradient(rgb(0,248,237),rgb(0,66,230),rgb(0,66,230),start='bottom'),visible=False)
+billFire2 = Polygon(112,335,108,329,110,325,110,326,113,323,114,326,114,320,117,325,119,330,118,335,120,338,115,335,fill=gradient(rgb(0,248,237),rgb(0,66,230),start='bottom'),visible=False)
+
+billRaisedArm = Line(92,343,114,344,fill=rgb(24,24,24),visible=False)
+billRaisedArm2 = Line(111,342,111,339,fill=rgb(24,24,24),visible=False)
+billRaisedArm3 = Line(114,342,116,338,fill=rgb(24,24,24),visible=False)
+billRaisedArm4 = Line(115,343,118,341,fill=rgb(24,24,24),visible=False)
+
+#Body
+billBody = RegularPolygon(77,343,34,3,fill=rgb(240,240,72),border=rgb(255,240,96),borderWidth=2)
+#Eyelashes
+eyelash = Line(73,329,70,325,fill=rgb(24,24,24))
+eyelash2 = Line(79,329,79,324,fill=rgb(24,24,24))
+eyelash3 = Line(85,329,87,324,fill=rgb(24,24,24))
+eyelash4 = Line(74,334,71,338,fill=rgb(24,24,24))
+eyelash5 = Line(79,335,79,339,fill=rgb(24,24,24))
+eyelash6 = Line(84,334,87,338,fill=rgb(24,24,24))
+#Eye
+billEyeLeft = Oval(79,332,27,9,fill='white')
+billEyeRight = Circle(82,332,3)
+#Bowtie
+billBowtie = Polygon(70,342,86,349,86,343,70,349,fill=rgb(24,24,24))
+#Left Arm
+billLeftArm = Line(61,345,61,365,fill=gradient(rgb(255,240,96),rgb(24,24,24),start='top'))
+billLeftArm2 = Line(60,365,64,365,fill=rgb(24,24,24))
+#Hat
+billHat = Line(65,319,74,309,fill=rgb(24,24,24),lineWidth=3)
+billHat2 = Polygon(59,307,64,303,72,313,68,316,fill=rgb(24,24,24))
+#Bill's saying 
+billSaying = Label('Sup',99,321,font='arial',size=8,fill='white')
+
+##### METHOD IS HERE                                                            M E T H O D  IS  H E R E 
+billLeftLeg.toBack()
+billLeftLeg2.toBack()
+billRightLeg.toBack()
+billRightLeg2.toBack()
+billRightArm.toBack()
+billRightArm2.toBack()
+billBody.toBack()
+billEyeLeft.toBack()
+billEyeRight.toBack()
+billBowtie.toBack()
+billLeftArm.toBack()
+billLeftArm2.toBack()
+billHat.toBack()
+billHat2.toBack()
+eyelash.toBack()
+eyelash2.toBack()
+eyelash3.toBack()
+eyelash4.toBack()
+eyelash5.toBack()
+eyelash6.toBack()
+billSaying.toBack()
+
+###Flashlight light 2 
+flashlight2 = Polygon(168,351,69,293,63,394,168,355,fill='gold',opacity=50,visible=False) 
+
+###Time counter
+time = Label('0',322,22,size=27,fill=rgb(207,207,207),font='arial')
+Label(': AM',363,22,size=27,fill=rgb(207,207,207),font='arial')
+
+#Light growing on lighthouse
+lightCircle = Circle(345,72,28,fill=rgb(255,215,0),opacity=30)
+lightCircle2 = Circle(367,56,20,fill=rgb(255,215,0),opacity=30)
+
+message = Label('It is passed 3:AM',200,200,fill=rgb(0,248,237),font='monospace',visible=False)
+
+
+def onKeyPress(key):
+    if(key == '0'):
+        app.start=True
+        app.oneoclock=False
+        app.twooclock=False
+        app.threeoclock=False
+        
+    if(key == '1'):
+        app.start=False
+        app.oneoclock=True
+        app.twooclock=False
+        app.threeoclock=False
+        
+    if(key == '2'):
+        app.start=False
+        app.oneoclock=False
+        app.twooclock=True
+        app.threeoclock=False
+    
+    if(key == '3'):
+        app.start=False
+        app.oneoclock=False
+        app.twooclock=False
+        app.threeoclock=True
+        app.bill=True
+       
+    if(key == 'up'):
+        app.time+=1
+        
+    elif(key == 'down'):
+        app.time-=1
+        
+    ###### CUSTOM PROPERTIES                                                C U S T O M   P R O P E R T I E S
+    ###Monsters
+    if(app.time == 0):
+        time.value=0
+        lightCircle.radius=28
+        lightCircle2.radius=20
+        lightCircle.opacity=30
+        lightCircle2.opacity=30
+        
+            
+    elif(app.time == 1):
+        time.value=1
+        lightCircle.radius = 24
+        lightCircle2.radius = 16
+        lightCircle.opacity=25
+        lightCircle2.opacity=25
+
+        
+    elif(app.time == 2):
+        time.value=2
+        lightCircle.radius = 22
+        lightCircle2.radius = 14
+        lightCircle.opacity = 20
+        lightCircle2.opacity = 20
+
+        
+    elif(app.time == 3):
+        time.value=3
+        lightCircle.radius = 20
+        lightCircle2.radius = 12
+        lightCircle.opacity = 15
+        lightCircle2.opacity = 15
+        
+    
+    elif(app.time == 4):
+        time.value=4
+        
+        lightCircle.opacity = 10
+        lightCircle2.opacity = 10
+        lightCircle.radius = 18
+        lightCircle2.radius = 10
+        
+    elif(app.time > 4):
+        time.value= app.time
+        if(app.threeoclock == False):
+            billLeftLeg.toFront()
+            billLeftLeg2.toFront()
+            billRightLeg.toFront()
+            billRightLeg2.toFront()
+            billRightArm.toFront()
+            billRightArm2.toFront()
+            billBody.toFront()
+            billEyeLeft.toFront()
+            billEyeRight.toFront()
+            billBowtie.toFront()
+            billLeftArm.toFront()
+            billLeftArm2.toFront()
+            billHat.toFront()
+            billHat2.toFront()
+            eyelash.toFront()
+            eyelash2.toFront()
+            eyelash3.toFront()
+            eyelash4.toFront()
+            eyelash5.toFront()
+            eyelash6.toFront()
+            billSaying.toFront()
+            flashlight2.toFront()
+            bEye.radius=1
+            gThought.value='!!'
+        ##### METHOD IS HERE                                                M E T H O D   IS    H E R E   
+        app.stop()
+        lightCircle.radius = 16
+        lightCircle2.radius = 18
+        lightCircle.opacity = 5
+        lightCircle2.opacity = 5
+        message.visible=True
+        app.threeoclock=True
+        billRightArm.visible=False
+        billRightArm2.visible=False
+        billRaisedArm.visible=True
+        billRaisedArm2.visible=True
+        billRaisedArm3.visible=True
+        billRaisedArm4.visible=True
+        billFire.visible=True
+        billFire2.visible=True
+        billSaying.value='Deal ?'
+        flashlight1.visible=False
+        flashlight2.visible=False
+        bEye.visible=False
+        billBody.fill=rgb(255,31,0)
+        billEyeLeft.fill=rgb(24,24,24)
+        billEyeRight.fill='white'
+        billLeftArm.fill=gradient(rgb(255,31,0),rgb(24,24,24),start='top')
+        
+        
+        gEye3.visible=False
+        gEye4.visible=False
+        gEye5.visible=True
+        gEye6.visible=True
+        gEye7.visible=True
+        gEye8.visible=True
+        gEyeBrown.visible=True
+        gEyeBrown2.visible=True
+        gMouth.visible=False
+        gMouth2.visible=True
+        gArm.visible=False
+        gArm2.visible=True
+        gHand.visible=False
+        gHand2.visible=True
+        gSleeve.visible=False
+        gSleeve2.visible=True
+        
+        sign.toBack()
+        sign2.toBack()
+        sign3.toBack()
+        sign4.toBack()
+        sign5.toBack()
+        
+        sign6.toFront()
+        sign7.toFront()
+        sign8.toFront()
+        sign9.toFront()
+        sign10.toFront()
+        
+        night.visible=False
+        night2.visible=True
+        
+        message.toFront()
+        eyeball.toBack()
+        eyeballEye.toBack()
+        eyeballEye2.toBack()
+        eyeballDetail.toBack()
+        eyeballDetail2.toBack()
+        eyeballDetail3.toBack()
+        eyeballDetail4.toBack()
+        eyeballDetail5.toBack()
+        eyeballDetail6.toBack()
+        eyeballDetail7.toBack()
+        eyeballDetail8.toBack()
+        eyeballDetail9.toBack()
+        eyeballDetail10.toBack()
+        eyeballDetail11.toBack()
+        womanHandRight.toBack()
+        womanBody.toBack()
+        womanHead.toBack()
+        womanHair.toBack()
+        womanEye1.toBack()
+        womanEye2.toBack()
+        womanMouth.toBack()
+        womanTongue.toBack()
+        womanHandLeft.toBack()
+     
+    if(key == 'f'):
+        flashlight1.visible=True
+        flashlight2.visible=True   
+        if(app.oneoclock == True):
+            eyeball.toFront()
+            eyeballEye.toFront()
+            eyeballEye2.toFront()
+            eyeballDetail.toFront()
+            eyeballDetail2.toFront()
+            eyeballDetail3.toFront()
+            eyeballDetail4.toFront()
+            eyeballDetail5.toFront()
+            eyeballDetail6.toFront()
+            eyeballDetail7.toFront()
+            eyeballDetail8.toFront()
+            eyeballDetail9.toFront()
+            eyeballDetail10.toFront()
+            eyeballDetail11.toFront()
+            flashlight2.toFront()
+            bEye.radius=2
+            
+            
+        elif(app.twooclock == True):
+            womanHandRight.toFront()
+            womanBody.toFront()
+            womanHead.toFront()
+            womanHair.toFront()
+            womanEye1.toFront()
+            womanEye2.toFront()
+            womanMouth.toFront()
+            womanTongue.toFront()
+            womanHandLeft.toFront()
+            flashlight2.toFront()
+            bEye.radius=2
+            
+            gEye1.visible=False
+            gEye2.visible=False
+            gEye3.visible=True
+            gEye4.visible=True
+            gThought.value='!'
+            
+            
+        elif(app.threeoclock == True):
+            billLeftLeg.toFront()
+            billLeftLeg2.toFront()
+            billRightLeg.toFront()
+            billRightLeg2.toFront()
+            billRightArm.toFront()
+            billRightArm2.toFront()
+            billBody.toFront()
+            billEyeLeft.toFront()
+            billEyeRight.toFront()
+            billBowtie.toFront()
+            billLeftArm.toFront()
+            billLeftArm2.toFront()
+            billHat.toFront()
+            billHat2.toFront()
+            eyelash.toFront()
+            eyelash2.toFront()
+            eyelash3.toFront()
+            eyelash4.toFront()
+            eyelash5.toFront()
+            eyelash6.toFront()
+            billSaying.toFront()
+            flashlight2.toFront()
+            bEye.radius=1
+            gThought.value='!!'
+
+
+########  KEY RELEASE IS HERE                                                   K E Y  R E L E A S E !!!!!        
+def onKeyRelease(key):
+    if(key == 'f'):
+        flashlight1.visible=False
+        flashlight2.visible=False
+            
+        if(app.oneoclock == True):
+            eyeball.toBack()
+            eyeballEye.toBack()
+            eyeballEye2.toBack()
+            eyeballDetail.toBack()
+            eyeballDetail2.toBack()
+            eyeballDetail3.toBack()
+            eyeballDetail4.toBack()
+            eyeballDetail5.toBack()
+            eyeballDetail6.toBack()
+            eyeballDetail7.toBack()
+            eyeballDetail8.toBack()
+            eyeballDetail9.toBack()
+            eyeballDetail10.toBack()
+            eyeballDetail11.toBack()
+            bEye.radius=3
+            app.hitCounter+=1
+            
+        elif(app.twooclock == True):
+            womanHandRight.toBack()
+            womanBody.toBack()
+            womanHead.toBack()
+            womanHair.toBack()
+            womanEye1.toBack()
+            womanEye2.toBack()
+            womanMouth.toBack()
+            womanTongue.toBack()
+            womanHandLeft.toBack()
+            app.monsterPresence=False
+            bEye.radius=3
+            app.hitCounter+=1
+            
+        elif(app.threeoclock == True):
+            billLeftLeg.toBack()
+            billLeftLeg2.toBack()
+            billRightLeg.toBack()
+            billRightLeg2.toBack()
+            billRightArm.toBack()
+            billRightArm2.toBack()
+            billBody.toBack()
+            billEyeLeft.toBack()
+            billEyeRight.toBack()
+            billBowtie.toBack()
+            billLeftArm.toBack()
+            billLeftArm2.toBack()
+            billHat.toBack()
+            billHat2.toBack()
+            eyelash.toBack()
+            eyelash2.toBack()
+            eyelash3.toBack()
+            eyelash4.toBack()
+            eyelash5.toBack()
+            eyelash6.toBack()
+            billSaying.toBack()
+            bEye.radius=3
+            app.hitCounter+=1
+            
+        if(app.hitCounter == 3):
+            shield.visible=True
+            shield2.visible=True
+            shield3.visible=True
+            shield4.visible=True
+            night.opacity=61
+
+### Lighthouse effect
+flame = Circle(400,400,2,fill=rgb(255,208,46),visible=False)
+
+def onMouseMove(mouseX,mouseY):
+    flame.centerX = mouseX
+    flame.centerY = mouseY
+    
+    if(mouseY < 126 and mouseX >200):
+        flame.visible=True
+
+    else:
+        flame.visible=False
+    
+    ##### METHOD IS HERE                                                        M E T H O D  I S  H E R E      
+    if(lighthouse.hitsShape(flame) == True):
+        if(app.oneoclock == True):
+            ###Eyeball
+            eyeball.visible=False
+            eyeballEye.visible=False
+            eyeballEye2.visible=False
+            eyeballDetail.visible=False
+            eyeballDetail2.visible=False
+            eyeballDetail3.visible=False
+            eyeballDetail4.visible=False
+            eyeballDetail5.visible=False
+            eyeballDetail6.visible=False
+            eyeballDetail7.visible=False
+            eyeballDetail8.visible=False
+            eyeballDetail9.visible=False
+            eyeballDetail10.visible=False
+            eyeballDetail11.visible=False
+        
+        elif(app.twooclock == True):
+            ###The ghost woman
+            womanHandRight.visible=False
+            womanBody.visible=False
+            womanHead.visible=False
+            womanHair.visible=False
+            womanEye1.visible=False
+            womanEye2.visible=False
+            womanMouth.visible=False
+            womanTongue.visible=False
+            womanHandLeft.visible=False
+    
+        elif(app.threeoclock == True):
+            ###Bill Cipher :))
+            billLeftLeg.visible=False
+            billLeftLeg2.visible=False
+            billRightLeg.visible=False
+            billRightLeg2.visible=False
+            billRightArm.visible=False
+            billRightArm2.visible=False
+            billBody.visible=False
+            billEyeLeft.visible=False
+            billEyeRight.visible=False
+            billBowtie.visible=False
+            billLeftArm.visible=False
+            billLeftArm2.visible=False
+            billHat.visible=False
+            billHat2.visible=False
+            eyelash.visible=False
+            eyelash2.visible=False
+            eyelash3.visible=False
+            eyelash4.visible=False
+            eyelash5.visible=False
+            eyelash6.visible=False
+            billSaying.visible=False
+        
+    else:
+        if(app.oneoclock == True):
+            ###Eyeball
+            eyeball.visible=True
+            eyeballEye.visible=True
+            eyeballEye2.visible=True
+            eyeballDetail.visible=True
+            eyeballDetail2.visible=True
+            eyeballDetail3.visible=True
+            eyeballDetail4.visible=True
+            eyeballDetail5.visible=True
+            eyeballDetail6.visible=True
+            eyeballDetail7.visible=True
+            eyeballDetail8.visible=True
+            eyeballDetail9.visible=True
+            eyeballDetail10.visible=True
+            eyeballDetail11.visible=True
+        
+        elif(app.twooclock == True):
+            ###The ghost woman
+            womanHandRight.visible=True
+            womanBody.visible=True
+            womanHead.visible=True
+            womanHair.visible=True
+            womanEye1.visible=True
+            womanEye2.visible=True
+            womanMouth.visible=True
+            womanTongue.visible=True
+            womanHandLeft.visible=True
+    
+        elif(app.threeoclock == True):
+            ###Bill Cipher :))
+            billLeftLeg.visible=True
+            billLeftLeg2.visible=True
+            billRightLeg.visible=True
+            billRightLeg2.visible=True
+            billRightArm.visible=True
+            billRightArm2.visible=True
+            billBody.visible=True
+            billEyeLeft.visible=True
+            billEyeRight.visible=True
+            billBowtie.visible=True
+            billLeftArm.visible=True
+            billLeftArm2.visible=True
+            billHat.visible=True
+            billHat2.visible=True
+            eyelash.visible=True
+            eyelash2.visible=True
+            eyelash3.visible=True
+            eyelash4.visible=True
+            eyelash5.visible=True
+            eyelash6.visible=True
+            billSaying.visible=True
+            app.hitCounter+=1
+
