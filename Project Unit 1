@@ -1,0 +1,119 @@
+#The sky
+Polygon(0,0,400,0,400,140,0,250,fill=gradient('lightCyan','lightSkyBlue','cornflowerBlue',start='bottom'))
+#The sun
+Circle(0,240,10,fill=rgb(255,255,222))
+Line(0,215,7,93,fill='white',opacity=30) 
+Line(2,227,42,78,fill='white',opacity=30)
+Line(8,230,68,113,fill='white',opacity=30)
+Line(14,233,115,135,fill='white',opacity=30) 
+Line(16,236,126,182,fill='white',opacity=30)
+#Mountains
+Polygon(400,400,400,140,327,105,285,156,204,146,171,193,75,185,25,240,0,240,0,400,fill=gradient(rgb(79,137,100),rgb(79,137,124),start='top'))
+#River (or ice, depends on how you look at it)
+Polygon(400,195,0,355,0,400,400,400,fill='powderBlue')
+#Piece of wood
+Polygon(282,297,150,291,172,332,295,335,fill=rgb(140,118,92))
+Polygon(149,289,149,302,165,337,172,331,fill=rgb(119,99,74))
+Polygon(171,331,295,335,164,337,fill=rgb(110,90,67))
+#Polarbear's shadow
+Oval(245,315,70,40,opacity=23)
+#Polar bear
+#Body
+Oval(220,270,100,120,fill='snow')
+#Ears
+Circle(253,210,10,fill='snow')
+Circle(205,203,8,fill='snow')
+Circle(248,210,5,fill='mistyRose')
+Circle(202,203,4,fill='mistyRose')
+#Cái mỏ (the muzzle [?])
+Circle(210,240,15,fill=rgb(245,245,225))
+#Nose
+Oval(206,233,17,10)
+#Mouth
+RegularPolygon(210,244,5,3)
+#Eyes
+Circle(233,230,2)
+Circle(193,227,2)
+#Blushes 
+Oval(237,236,6,3,fill='lightCoral')
+Oval(186,233,6,3,fill='lightCoral')
+#Bum
+Oval(233,305,75,53,fill='snow')
+#Scarf for polar bear
+Line(255,291,254,299,fill='fireBrick')
+Line(259,290,258,299,fill='fireBrick')
+Line(262,291,262,298,fill='fireBrick')
+Rect(252,262,13,33,fill='crimson',border='fireBrick',borderWidth=2)
+Rect(167,253,105,13,fill='crimson',border='fireBrick',borderWidth=2)
+#Hands
+Circle(236,279,14,fill=None,border='lightGrey')
+Circle(189,279,14,fill=None,border='lightGrey')
+Rect(174,279,73,15,fill='snow')
+Line(182,265,182,268)
+Line(189,262,189,268)
+Line(196,263,196,268)
+Line(228,265,228,268)
+Line(236,262,236,268)
+Line(244,263,244,268)
+#Feet
+Circle(183,310,15,fill='snow',border='gainsboro')
+Circle(231,320,15,fill='snow',border='gainsboro')
+Circle(182,315,6,fill='mistyRose')
+Circle(175,307,3,fill='mistyRose')
+Circle(183,303,4,fill='mistyRose')
+Circle(190,308,3,fill='mistyRose')
+Circle(231,323,6,fill='mistyRose')
+Circle(223,316,3,fill='mistyRose')
+Circle(231,312,4,fill='mistyRose')
+Circle(239,316,3,fill='mistyRose')
+Line(171,300,171,297)
+Line(182,294,182,297)
+Line(194,300,194,297)
+Line(220,310,220,307)
+Line(231,305,231,302)
+Line(241,309,241,306)
+#Tail
+Circle(278,297,4.5,fill='snow')
+#River splash (or grinded lumps of ice, depends on how you see it)
+Circle(303,320,15,fill=gradient('powderBlue','lightSkyBlue',start='bottom'))
+Circle(282,333,13,fill=gradient('powderBlue','lightSkyBlue',start='bottom'))
+Circle(257,342,12,fill=gradient('powderBlue','lightSkyBlue',start='bottom'))
+Circle(159,329,9,fill=gradient('powderBlue','lightSkyBlue',start='bottom'))
+Circle(152,315,5,fill=gradient('powderBlue','lightSkyBlue',start='bottom'))
+#River/Ice details
+Oval(143,311,40,5,fill='white',opacity=30)
+Oval(288,325,40,5,fill='white',opacity=30)
+Oval(150,234,50,5,fill='white',opacity=30)
+Oval(277,267,50,5,fill='white',opacity=30)
+Oval(167,222,20,5,fill='white',opacity=30)
+Oval(288,256,20,3,fill='white',opacity=30)
+Line(29,369,109,333,fill='white',opacity=50)
+Line(52,371,90,352,fill='white',opacity=50)
+Line(97,383,154,352,fill='white',opacity=50)
+Line(226,385,283,355,fill='white',opacity=50)
+Line(313,381,392,335,fill='white',opacity=50)
+Line(293,271,385,222,fill='white',opacity=50)
+Line(271,369,250,380,fill='white',opacity=50) 
+Line(345,253,400,223,fill='white',opacity=50) 
+#Details for mountains
+Polygon(45,217,75,184,115,188,105,199,94,205,87,212,81,220,69,226,58,227,fill=gradient(rgb(234,234,234),rgb(247,248,249),start='bottom'))
+Polygon(173,190,196,178,220,176,233,164,247,159,252,151,204,145,fill=gradient(rgb(234,234,234),rgb(247,248,249),start='bottom'))
+Polygon(365,123,327,105,305,132,316,139,326,136,334,140,344,143,351,136,357,128,fill=gradient(rgb(234,234,234),rgb(247,248,249),start='bottom'))
+#Stars
+Star(277,29,6,4,fill=rgb(255,255,222))
+Star(296,38,5,4,fill=rgb(255,255,222))
+#Fading moon
+Circle(340,35,20,fill=gradient('cornflowerBlue','ghostwhite',start='top'))
+#Shooting stars
+Line(195,108,255,70,fill=gradient('ghostwhite','lightSkyBlue',start='bottom'),lineWidth=3)
+Line(243,99,299,63,fill=gradient('ghostwhite','lightSkyBlue',start='bottom'))
+Line(251,83,283,62,fill=gradient('ghostwhite','lightSkyBlue',start='bottom'),lineWidth=2)
+#Polar bear's thought 
+Oval(305,228,80,40,border='black',dashes=True,fill='white',opacity=68,borderWidth=1)
+Label('A bit chilly?!',307,228,size=9,font='courier')
+#Dates
+Label('Dec 2nd 2020',64,17,size=14,font='monospace',fill='midnightBlue',opacity=40)
+#Lights from the sun
+Circle(4,237,5,fill='ivory',opacity=50)
+Circle(4,250,10,fill='ivory',opacity=40)
+Circle(4,266,15,fill='ivory',opacity=30)
