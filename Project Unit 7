@@ -1,0 +1,505 @@
+###### Name: Tuong Tran/ Unit Project: 7
+###### Instructions: USE YOUR MOUSE!!!!
+###### In this game, you're going to be a dessert maker. Click on either of the words ("Dessert"), or the dishes itself
+###### to give the girl your dessert! The girl will give you her thinking about what she tried. 
+###### Each dishes will receive different comments. Another way to give the girl your desert is...click on the girl's mouth! 
+###### You're not stuffing cookies into the girl's mouth by doing so, just kinda. It's a "skip-time" button :) 
+###### The girl will give you a comment, too! You will only have 3 tries to give the girl your desert! 
+###### When you eat one dish at a time, you can click 3 clicks, and when you click the fourth and the fifth, the ending will appear.
+##### When you stuff cookies in the girl's mouth, I mean, skip-time, on the other hand, you will only have 1 to 2 tries. 
+##### If you go ahead and click the 3rd time, the ending will appear. There are two endings, depends on whether you stuffed
+##### the desserts into the girl's mouth or not. Note that when you click something else other than the words, dishes and the girl's mouth, 
+##### it will also counts as something, and can add up and give you an early ending. By default, the girl will try your dish once at a time. 
+##### Of course, you know, unless you skip the time. That will give you the 2nd ending. See the code under line 286 to know the endings!
+
+#####Requirements
+##### Local Helper Variable: Line 236, 319, 453, and line 481
+##### For loop: Line 35, 66, and line 169
+##### Group.children: Line 348, 365, and line 379
+
+####Settings
+#### Help the game to decide whether a condition is true or not. Counts time to end the game when necessary
+app.Eat1=True
+app.EatAll=False
+### Help to determind when to end the game
+app.Times=0
+
+#Sky
+app.background=rgb(162,238,235)
+
+#Sun 
+sun = Star(0,0,50,150,fill=rgb(255,218,96))
+Circle(0,0,60,fill=rgb(255,227,133),opacity=12)
+
+#Stars
+##### FOR LOOP IS HERE !!!!!!!!!!!!!!                                           F  O  R    L O  O  P  !!!!!!!!!!!
+### Draw little stars on the sky. For decoration
+def drawStars(x,y,g):
+    for i in range(2):
+        star = Group(
+            Star(x,y,3,4,fill='white',rotateAngle=2*(i+20)),
+            Star(x,y,4,4,fill='white',rotateAngle=2*(i+40)),
+            Star(x,y,2,4,fill='white',rotateAngle=2*(i+60))
+            )
+        star.opacity=g
+        
+drawStars(55,49,50)
+drawStars(82,28,35)
+drawStars(116,53,10)
+drawStars(336,21,13)
+drawStars(378,37,55)
+        
+#Clouds
+### Groups below draw the clouds! 
+cloud1 = Group(
+    Oval(71,68,65,25,fill='snow'),
+    Oval(47,79,60,20,fill='snow')
+    )
+cloud1.dx=3
+    
+cloud2=Group(
+    Oval(346,172,65,25,fill='snow'),
+    Oval(327,181,60,20,fill='snow')
+    )
+cloud2.dx=-3
+
+###### FOR LOOP IS HEREEEEEEEE                                                  F   O   R     L  O  O  P  !!!!!!
+####Flowers
+### Draw flowers on the hill (behind the girl)
+def createFlowers(X,Y):
+    flower=Group()
+    for a in range(1):
+        flower.add(
+            RegularPolygon(X,Y,8,3,fill=gradient(rgb(253,189,87),'white','white'),rotateAngle=10*a),
+            RegularPolygon(X,Y,8,3,fill=gradient(rgb(253,189,87),'white','white'),rotateAngle=10*(a+10)),
+            RegularPolygon(X,Y,8,3,fill=gradient(rgb(253,189,87),'white','white'),rotateAngle=10*(a+20)),
+            RegularPolygon(X,Y,8,3,fill=gradient(rgb(253,189,87),'white','white'),rotateAngle=10*(a+30)),
+            RegularPolygon(X,Y,8,3,fill=gradient(rgb(253,189,87),'white','white'),rotateAngle=10*(a+40)),
+            RegularPolygon(X,Y,8,3,fill=gradient(rgb(253,189,87),'white','white'),rotateAngle=10*(a+50))
+            )
+    flower.add(Circle(X,Y,3,fill=rgb(253,189,87)))
+
+#Hill
+Oval(45,400,500,210,fill=rgb(39,180,110))
+        
+createFlowers(32,326)
+createFlowers(97,353)
+createFlowers(181,324)
+createFlowers(160,381)
+createFlowers(0,387)
+
+#Hill2 
+Oval(350,420,420,175,fill=rgb(33,167,101))
+
+createFlowers(236,381)
+createFlowers(308,348)
+createFlowers(392,375)
+
+###The girl
+#Hair (back)
+Polygon(72,135,78,130,90,128,103,130,107,134,105,142,116,269,90,290,58,278,72,142,fill=rgb(167,66,55))
+
+#Head
+Rect(82.5,214,13,18,fill=rgb(250,231,208))
+Circle(90,180,38,fill=rgb(250,231,208))
+
+#Arm left 1
+Polygon(62,248,30,296,40,311,64,265,fill=rgb(250,231,208))
+#Arm right 1
+Polygon(113,244,155,300,141,307,114,271,fill=rgb(250,231,208))
+
+#Sleeve (left)
+Polygon(67,241,43,255,45,267,56,279,61,279,fill=rgb(153,130,190))
+#Sleeve (right)
+Polygon(113,241,134,252,134,266,127,278,120,280,fill=rgb(153,130,190))
+
+#Body
+Polygon(64,323,119,323,135,385,50,385,fill=rgb(128,104,168))
+Polygon(60,258,49,335,73,345,94,349,129,336,135,335,120,258,fill=rgb(174,147,217))
+Circle(90,260,30,fill=rgb(174,147,217))
+#Necklace
+Line(74,235,88,251,lineWidth=1,arrowEnd=True,fill='snow')
+Line(104,234,93,249,lineWidth=1,arrowEnd=True,fill='snow')
+
+#Book/Menu 
+Polygon(63,245,58,310,89,303,120,310,113,246,89,265,fill=rgb(121,114,132))
+Line(89,270,89,290,fill=rgb(110,104,119))
+Label('Menu',104,295,fill='white',font='monospace',size=9,rotateAngle=10)
+Label('Menu',74,296,fill='white',font='monospace',size=9,rotateAngle=-11)
+
+#Arm left 2
+Polygon(30,296,22,303,22,311,32,317,71,284,65,280,fill=rgb(251,227,198))
+#Arm right 2 
+Polygon(158,301,158,308,152,315,140,310,110,277,115,272,fill=rgb(251,227,198))
+
+#Hand left 
+Polygon(65,281,66,270,69,262,70,269,83,269,85,272,83,278,70,285,fill=rgb(251,227,198))
+#Hand right 
+Polygon(116,273,110,259,103,254,105,263,95,264,97,272,102,277,111,278,fill=rgb(251,227,198))
+
+#Face
+gEye = Circle(70,180,5,fill=rgb(49,49,49))
+gEye2 = Circle(106,180,5,fill=rgb(49,49,49))
+mouth = Oval(89,198,20,9,fill=rgb(49,49,49))
+tongue = Oval(89,200,9,4,fill=rgb(243,0,31))
+
+#Hair
+Polygon(88,162,100,178,99,163,115,183,117,175,121,213,131,179,128,159,110,139,88,134,59,147,45,175,59,220,57,176,57,182,76,158,fill=rgb(183,73,61))
+
+#Table
+Rect(0,360,400,40,fill=rgb(245,245,245))
+
+###Draw strips for the picnic blanket
+def drawStripes(x,y):
+    Rect(x,y,20,42,fill=rgb(240,58,19),opacity=50)
+    
+drawStripes(0,360)
+drawStripes(45,360)
+drawStripes(90,360)
+drawStripes(135,360)
+drawStripes(180,360)
+drawStripes(225,360)
+drawStripes(270,360)
+drawStripes(315,360)
+drawStripes(360,360)
+drawStripes(405,360)
+
+Rect(0,387,400,20,fill=rgb(240,58,19),opacity=50)
+
+###### FOR LOOP IS HERE                                                         F   O   R       L   O   O   P  !!!
+###Plates
+###Draw plates on the tabel!
+for i in range(3):
+    Oval(65+i*135,380,120,40,fill=rgb(243,226,179))
+    
+####Desserts
+Biscuits=Group()
+###Make the first type of desert (on the left side of the table)
+def makeBiscuit(x,y):
+    biscuit = Group(
+        Star(x,y,18,18,roundness=96,fill=rgb(240,211,138)),
+        Circle(x-6,y-6,1,fill=rgb(221,191,115)),
+        Circle(x-8,y+3,1,fill=rgb(221,191,115)),
+        Circle(x,y+8,1,fill=rgb(221,191,115)),
+        Circle(x+8,y+3,1,fill=rgb(221,191,115)),
+        Circle(x+6,y-7,1,fill=rgb(221,191,115)),
+        Circle(x,y-1,1,fill=rgb(221,191,115))
+        )
+    Biscuits.add(biscuit)
+    
+makeBiscuit(65,372)
+makeBiscuit(45,377)
+makeBiscuit(85,377)
+
+Cookies=Group()
+###Make the second type of desert (in the middle of the table)
+def makeCookie(X,Y):    
+    cookie = Group(
+        Rect(X,Y,26,23,fill=rgb(255,252,177),align='center'),
+        Rect(X-13,Y-12,13,12,fill=rgb(165,126,108),align='top-left'),
+        Rect(X+13,Y+12,13,12,fill=rgb(165,126,108),align='bottom-right')
+        )
+    Cookies.add(cookie)
+    
+makeCookie(177,371)
+makeCookie(203,365)
+makeCookie(222,374)
+makeCookie(197,382)
+
+Sugar=Group()
+###Make the last type of desert (on the right of the table)
+def makeSugar(x,Y):
+    sugar = Group(
+    Star(x,Y,15,15,roundness=96,fill=gradient(rgb(255,235,205),rgb(255,229,190))),
+    Oval(x-3,Y,4.5,10,fill=rgb(209,37,64),rotateAngle=160),
+    Oval(x+1,Y,4.5,10,fill=rgb(209,37,64),rotateAngle=195)
+    )
+    Sugar.add(sugar)
+    
+makeSugar(320,367)
+makeSugar(350,365)
+makeSugar(338,380)
+
+### This group groups all of the desert together, later on will be useful when player decide to stuff all desert in the girl's mouth
+ALL = Group()
+ALL.add(
+    Sugar,
+    Cookies,
+    Biscuits
+    )
+mouse = Star(-5,-5,5,4)
+
+def onMouseMove(mouseX,mouseY):
+    mouse.centerX=mouseX
+    mouse.centerY=mouseY
+    ### Just a simple trick to change the mouse's color, depends on where you're at
+    ##### Local Variable                                                        L O C A L    V A R I A B L E  !!!!
+    if(mouseX < 200):
+        color=rgb(240,211,138)
+    else:
+        color=gradient(rgb(255,235,205),rgb(255,229,190))
+            
+    mouse.fill=color
+
+####Saying 
+#UP
+Oval(282,88,230,130,fill=rgb(251,242,238))
+woman=Polygon(335,135,379,163,367,121,fill=rgb(251,242,238))
+
+### The intro (top-right corner)
+Label('Which dessert do you',211,47,size=12,font='courier',align='left')
+Label('want to try? Click them!',184,65,size=13,font='courier',align='left')
+
+###Create dessert labels. Work as bases to trigger the first type of eating: eat one type of desert at a time
+dessert1 = Group(
+    Label('Dessert',219,88,size=15.5,fill=rgb(240,211,138),align='left',font='monospace',italic=True,bold=True),
+    Rect(213,78,80,23,fill=None,border=rgb(240,211,138),borderWidth=2)
+    )
+dessert1.centerX=233
+dessert1.centerY=92
+
+dessert2 =Group(
+    Label('Dessert',312,102,size=15.5,fill=rgb(165,126,108),align='left',font='monospace',italic=True,bold=True),
+    Rect(303,91,80,23,fill=None,border=rgb(165,126,108),borderWidth=2)
+    )
+dessert2.centerX=342
+dessert2.centerY=100
+
+dessert3 = Group(
+    Label('Dessert',230,129,size=15.5,fill=rgb(254,223,175),align='left',font='monospace',italic=True,bold=True),
+    Rect(222,118,80,23,fill=None,border=rgb(255,227,186),borderWidth=2)
+    )
+dessert3.centerX=259
+dessert3.centerY=127
+#Decoration for UP
+createFlowers(281,103)
+createFlowers(186,116)
+createFlowers(201,124)
+createFlowers(380,57)
+createFlowers(378,72)
+createFlowers(375,125)
+createFlowers(194,40)
+
+#DOWN
+Oval(230,239,130,90,fill=rgb(251,242,238))
+girl= Polygon(184,264,167,284,200,273,fill=rgb(251,242,238)) 
+
+### Reaction/feedback the girl will give you after eating the desert. Appears after when you either click on the dessert labels
+### or on each of the desert (individually) itself. Works the same way. Groups below are the girl's feedbacks
+reaction1=Group(
+    Label('Mmm!',229,217,font='courier',size=17),
+    Label('10/10, so good',230,248,font='courier',size=13.5)
+    )
+reaction1.visible=False
+
+reaction2=Group(
+    Label('Oh!',230,222,font='courier',size=17),
+    Label('2 flavors. Not bad',230,248,font='courier',size=11)
+    )
+reaction2.visible=False
+
+reaction3=Group(
+    Label('Naw!',230,222,font='courier',size=17),
+    Label('Jam is too sweet!!',230,248,font='courier',size=11)
+    )
+reaction3.visible=False
+
+### reaction 4 is actually different from the above 3. It will only appears when you click on the girl's mouth
+reaction4 = Group(
+    Label('Aww!',230,222,font='courier',size=17),
+    Label('Too much dessert!',230,248,font='courier',size=11)
+    )
+reaction4.visible=False
+
+createFlowers(270,205)
+createFlowers(281,222)
+createFlowers(207,278)
+
+def onMousePress(mouseX,mouseY):
+    #####  LOCAL VARIABLES ARE HERE!!!!                                         L O C A L    V A R I A B L E  !!!
+    ### These helper variables will help the game to know what did the player click by changing them to "True" in that specific situation
+    BiscuitTime=False
+    CookieTime=False
+    SugarTime=False
+    
+    ### These conditions (below) help to evaluate the situation. Like what happens when you click this type of dessert/this specific dessert label
+    if(mouse.hitsShape(dessert1)==True or mouse.hitsShape(Biscuits)):
+        BiscuitTime=True
+        CookieTime=False
+        SugarTime=False
+
+    elif(mouse.hitsShape(dessert2)==True or mouse.hitsShape(Cookies)):
+        BiscuitTime=False
+        CookieTime=True
+        SugarTime=False
+        
+    elif(mouse.hitsShape(dessert3)==True or mouse.hitsShape(Sugar)):
+        BiscuitTime=False
+        CookieTime=False
+        SugarTime=True
+    ### This is the code that for the second type of eating (click on the girl's mouth)
+    elif(mouse.hitsShape(tongue)==True or mouse.hitsShape(mouth)==True):
+        app.Eat1=False
+        app.EatAll=True
+    ### See, I told you clicking randomly somewhere else would count too! :))
+    else:
+        app.Times+=0.5
+
+###### GROUP.CHILDREN                                                           G R O U P.  C H I L D R E N !!!!!!!
+    ### Conditions below will actually do the actions. They allows the game to know what to do once a condition is true: 
+    ###Remove that particular type of dessert and allow the girl to say her (corresponding) feedback
+    if(app.Eat1 == True):
+        if(BiscuitTime==True):
+            for biscuit in Biscuits.children:
+                Biscuits.remove(biscuit)
+                
+            reaction1.visible=True
+            reaction2.visible=False
+            reaction3.visible=False
+            reaction4.visible=False
+            gEye.radius=7
+            gEye2.radius=7
+            
+            app.Times+=1
+          
+###### GROUP.CHILDREN                                                           G R O U P.  C H I L D R E N !!!!!!!
+        if(CookieTime==True):
+            for cookie in Cookies.children:
+                Cookies.remove(cookie)
+                
+            reaction1.visible=False
+            reaction2.visible=True
+            reaction3.visible=False
+            reaction4.visible=False
+            gEye.radius=5
+            gEye2.radius=5
+            
+            app.Times+=1
+        
+###### GROUP.CHILDREN                                                           G R O U P.  C H I L D R E N !!!!!!!    
+        if(SugarTime ==True):
+            for sugar in Sugar.children:
+                Sugar.remove(sugar)
+                
+            reaction1.visible=False
+            reaction2.visible=False
+            reaction3.visible=True
+            reaction4.visible=False
+            gEye.radius=3
+            gEye2.radius=3  
+            
+            app.Times+=1
+            
+    ### This (below) happens only when you click on the girl's mouth, meaning trigged "eating-type-2" to be true    
+    if(app.EatAll == True):
+        app.group.remove(ALL)
+        
+        #Additional reaction
+        gEye.radius=3
+        gEye.radius=3
+        mouth.width+=3
+        tongue.width+=3
+        gEye.radius=2
+        gEye2.radius=2
+        reaction1.visible=False
+        reaction2.visible=False
+        reaction3.visible=False
+        reaction4.visible=True
+        
+        app.Times+=3
+    
+    ### app.Times decides when will it be appropriate to end the game. The game will end once app.Times hit a 
+    ### specific number. Depending on which "type" of eating you used, the ending will be different
+    if(app.Times >= 3):
+        if(app.Eat1 == True and app.Times >= 4):
+            app.group.clear()
+            Rect(0,0,400,400,fill=rgb(205,245,219))
+            Label('Unfortuately, the sweet shop closed',200,160,size=17,font='courier',fill=rgb(120,180,181),bold=True)
+            Label('Thanks! I had a wonderful time',200,208,size=16,font='courier',fill=rgb(120,180,181),bold=True)
+            Label('From, The Girl',200,255,size=15,font='courier',fill=rgb(150,67,157),bold=True)
+            Label(':D',200,293,size=15,font='courier',fill=rgb(120,180,181),bold=True)
+            app.stop()
+        elif(app.Times > 6 and app.EatAll == True):
+            app.group.clear()
+            Rect(0,0,400,400,fill=rgb(192,174,196))
+            Label('Uhh, too much sweet for a dayyy!',200,160,size=17,font='courier',fill=rgb(150,67,157),bold=True)
+            Label('Nice to meet you though',200,208,size=16,font='courier',fill=rgb(150,67,157),bold=True)
+            Label('From, The Girl',200,255,size=15,font='courier',fill=rgb(205,245,219),bold=True)
+            Label(':))',200,293,size=15,font='courier',fill=rgb(150,67,157),bold=True)
+
+### Groups below create two little birds in the far end, left-(almost) bottom of the game
+bird = Group(
+    Line(340,308,344,305,opacity=10),
+    Line(344,305,353,308,opacity=10),
+    Line(353,308,359,300,opacity=10),
+    Line(359,300,364,300,opacity=10)
+    )
+bird.dy=0.75
+
+bird2 = Group(
+    Line(304,315,306,313,opacity=10),
+    Line(306,313,311,315,opacity=10),
+    Line(311,315,315,310,opacity=10),
+    Line(315,310,318,310,opacity=10)
+    )
+bird2.dy=0.5
+
+def onStep():
+    sun.points+=1
+    
+    cloud1.centerX+=cloud1.dx
+    cloud2.centerX+=cloud2.dx
+    
+    ##### LOCAL VARIABLE                                                        L O C A L   V A R I A B L E  !!!!!!
+    ### Helper variables below will help the clouds (appear to be near the top of the game) to have different opacity,
+    ### depends on what "region" they're at 
+    if(cloud1.centerX < 150):
+        j = 23
+    elif(150 < cloud1.centerX < 250):
+        j=13
+    else: 
+        j = 3
+    
+    if(cloud2.centerX < 150):
+        u = 4
+    elif( 150 < cloud2.centerX < 250):
+        u = 14
+    else: 
+        u = 24
+        
+    cloud1.opacity=j
+    cloud2.opacity=u
+    
+    if(cloud1.left > 400):
+        cloud1.right=0
+        
+    if(cloud2.right < 0):
+        cloud2.left= 400
+ 
+    bird.centerY+=bird.dy
+    bird2.centerY+=bird2.dy
+####### LOCAL VARIABLE IS HERE!!!!!!!                                           L O C A L   V A R I A B L E !!!!!!
+    opa=0.5
+    city=0.5
+    ### Conditions below will help the birds with their effects. You see, I want the birds to look like they're
+    ### coming closer as the game goes on, and these helper variabes (above) make sure of that.
+    if(bird.centerY <=289 or bird.centerY >=321):
+        bird.dy=-bird.dy
+        ### Basically what they're doing here is whenever the bird hits a number,its opacity change, and continue to move up/down.
+        if(bird.dy == -0.75):
+            opa=-10
+        if(bird.dy == 0.75):
+            opa=10
+                
+    if(bird2.centerY <=310 or bird2.centerY >=320):
+        bird2.dy=-bird2.dy
+        if(bird2.dy == -0.5):
+            city=-10
+        if(bird2.dy == 0.5):
+            city=10
+        
+    if(bird.opacity < 100):            
+        bird.opacity+=opa
+        
+    if(bird.opacity < 90):            
+        bird2.opacity+=city
