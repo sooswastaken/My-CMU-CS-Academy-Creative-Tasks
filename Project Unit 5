@@ -1,0 +1,408 @@
+###### and: Scroll down from line 90. 
+###### or: Scroll down from line 235
+###### not: Scroll down from line 168
+###### nested condition: Scroll down from line 102
+###### onKeyHold: line 154
+
+####Instruction for game:
+### You use 'up','down','left' and 'right' keys to move the circle, aka the window (which is what I call).
+### You can increase and decrease the radius of the window by pressing 'a' (increasing) or 's' (decreasing).
+### There will be 2 speacial effects. For number one, press 'w' and see that the window's fill changes. 
+### I call it the window with flashlight. Move the window so that it contains either one of the fish. You can see that the fish changes its color when the flashlight is on/'w' is pressed.
+### For number two, I call this special effect is x-ray. Press 'space' AT LEAST 9 times, and see that the battery (top-left) is full.
+### Then, move the window so that it contains either one of the fish. IF the window is containing the ORANGE TOP FISH, press 'q'
+### and see that the ORANGE TOP FISH turns into a skeleton. The battery will only reset itself when you release the 'q' key while the window is containing the ORANGE TOP FISH.
+### Same with the PINK BOTTOM FISH. First and foremost, press 'space' AT LEAST 9 times to fill the battery. Once that's done, 
+### move the window so that it contains the PINK BOTTOM FISH and press 'e'. You can see that the PINK BOTTOM FISH also turns into a skeleton. 
+###The battery will only reset itself when you release the 'e' key while the window is containing the PINK BOTTOM FISH.
+### While pressing 'w', 'q' or 'e', you can also press 'm' to see my secret message. Notice that it is very crucial to press 'space' AT LEAST 9 times before press 'q' or 'e'.
+### Also, the window can perform wraparound. As always, find the orange lines to check the requirements. Please email me if you're having a hard time.
+
+### Background
+app.background = 'black'
+
+### Properties
+window = Circle(200,200,100,fill=gradient('blue','midnightBlue',start='top'))
+
+flashlight = Circle(200,200,100,fill=gradient('yellow','gold',start='top'),opacity=20,visible=False)
+
+xray = Circle(200,200,100,fill=gradient('forestGreen','darkGreen',start='bottom'),opacity=40,visible=False)
+
+endTheme1 = Rect(0,0,400,400,fill='black',visible=False)
+
+badEnd = Label('OVER ONE MILLION MARINE ANIMALS ', 210,200,fill='snow',size= 12,font='counrier',visible=False)
+badEnd2 = Label('ARE KILLED EACH YEAR DUE TO PLASTIC DEBRIS IN THE OCEAN',200,230,fill='snow',size=12,font='counrier',visible=False)
+badEnd3 = Label('-conserveturtles.org-',200,255,fill='snow',size=12,font='counrier',visible=False)
+
+endTheme2 = Rect(0,0,400,400,fill='snow',visible=False)
+goodEnd = Label('As much as 80% of all life',210,190,size=12,font='monospace',visible=False)
+goodEnd2 = Label('on earth is found beneath the surface of the ocean',205,220,size=12,font='monospace',visible=False)
+goodEnd3 = Label('!Save the sea!',206,249,size=12,font='monospace',visible=False)
+goodEnd4 = Label('-globalcitizen.org-',206,280,size=12,font='monospace',visible=False)
+
+### Custom properties
+app.xrayCount = 0
+
+####Guide
+guide = Label('Move window with up,down,left,right; w for color changing',270,324,font='arial',size=10,fill='white')
+guide2 = Label('Space to fill battery.When full, press q for top, e for bottom',267,342,font='arial',size=10,fill='white')
+guide3 = Label('While press w, q or e, press m to see message', 291,359,font='arial',size=10,fill='white')
+guide4 = Label('Window MUST contain fishes!!!',320,377,font='arial',size=10,fill='white')
+
+
+###Creatures at sea 
+####Fish 1    
+fishHead = Polygon(286,65,313,47, 351,76, 350,46, 313,79,fill=gradient('orange',rgb(251,140,0),start='bottom'),visible=True)
+fishEye = Circle(298,63,2,visible=True)
+fishDetail = Line(311,54,311,71,fill=rgb(245,124,0),visible=True)
+fishDetail2 = Line(318,57,318,67,fill=rgb(245,124,0),visible=True)
+
+fish = Polygon(303,53,311,46,311,61,fill='white',visible=False)
+fish1 = Polygon(314,53,320,46,320,61,fill='white',visible=False)
+fish2 = Polygon(322,53,339,46,339,60,fill='white',visible=False)
+fish3 = Line(294,53,326,53,lineWidth=4,fill='white',visible=False)
+fish4 = RegularPolygon(294,53,12,3,fill='snow',rotateAngle=272,visible=False)
+fish5 = Circle(292,52,2,visible=False)
+
+### Fish 2
+pFishHead = Polygon(42,334,70,316,109,344,104,330,108,317,70,347,fill=gradient(rgb(216,27,96),rgb(233,30,99),start='top'),visible=True)
+pFishEye = Circle(55,332,2,visible=True)
+pFishDetail = Line(69,323,69,340,fill=rgb(194,24,91),visible=True)
+pFishDetail2 = Line(76,327,76,336,fill=rgb(194,24,91),visible=True)
+
+pfish = Polygon(42,334,61,320,60,342,fill='white',visible=False)
+pfish1 = Line(49,332,103,332,fill='white',visible=False,lineWidth=4)
+pfish2 = Polygon(75,322,70,331,75,341,fill='white',visible=False)
+pfish3 = Polygon(87,332,92,322,92,341,fill='white',visible=False)
+pfish4 = Polygon(100,332,112,319,109,331,112,341,fill='white',visible=False)
+pfish5 = Circle(52,332,2,visible=False)
+
+###Features
+#The batery
+b1 = Polygon(24,22,46,24,23,39,fill=rgb(100,255,218),visible=False)
+b2 = Polygon(23,38,44,25,45,39,23,50,fill=rgb(29,233,182),visible=False)
+b3 = Polygon(23,47,45,39,44,52,24,52,fill=rgb(0,191,165),visible=False)
+battery = Rect(22,21,24,34,fill=None,border=rgb(249,249,249),borderWidth=3)
+battery2 = Rect(25,15,17,3,fill=None,border=rgb(249,249,249),borderWidth=3)
+
+### Main part
+def onKeyRelease(keys):
+    if('w' in keys  and flashlight.visible==True):
+        flashlight.visible=False
+        
+        fishHead.fill=gradient('orange',rgb(251,140,0),start='bottom')
+        fishDetail.fill=rgb(245,124,0)
+        fishDetail2.fill=rgb(245,124,0)
+        
+        pFishHead.fill = gradient(rgb(216,27,96),rgb(233,30,99),start='top')
+        pFishDetail.fill = rgb(194,24,91)
+        pFishDetail2.fill = rgb(194,24,91)
+    
+    ########## NESTED CONDITION HERE AND BELOW                                  N E S T E D   C O N D I T I O N
+    if(window.containsShape(fishHead) == True):   
+        if('q' in keys and xray.visible==True):
+            app.xrayCount = 0
+            xray.visible=False
+            
+            fishHead.fill=gradient('orange',rgb(251,140,0),start='bottom')
+            fishDetail.fill=rgb(245,124,0)
+            fishDetail2.fill=rgb(245,124,0)
+            
+            fish.visible=False
+            fish1.visible=False
+            fish2.visible=False
+            fish3.visible=False
+            fish4.visible=False
+            fish5.visible=False
+            
+            fishHead.visible=True
+            fishEye.visible=True
+            fishDetail.visible=True
+            fishDetail2.visible=True
+            
+            b1.visible=False
+            b2.visible=False
+            b3.visible=False
+            
+    ###### AND HERE AND BELOW                                                   A N D   I S    H E R E 
+    if(window.containsShape(pFishHead) == True):   
+        if('e' in keys and xray.visible==True):
+            app.xrayCount = 0
+            xray.visible=False
+            
+            pFishHead.fill = gradient(rgb(216,27,96),rgb(233,30,99),start='top')
+            pFishDetail.fill = rgb(194,24,91)
+            pFishDetail2.fill = rgb(194,24,91)
+            
+            pfish.visible=False
+            pfish1.visible=False
+            pfish2.visible=False
+            pfish3.visible=False
+            pfish4.visible=False
+            pfish5.visible=False
+            
+            pFishHead.visible=True
+            pFishEye.visible=True
+            pFishDetail.visible=True
+            pFishDetail2.visible=True
+            
+            b1.visible=False
+            b2.visible=False
+            b3.visible=False       
+    
+########      ON KEY HOLD IS HERE                                               O N   K E Y   H O L D 
+def onKeyHold(keys):
+    ###Flashlight
+    if('w' in keys):
+        flashlight.visible=True
+        
+    else:
+        flashlight.visible=False
+        
+    ###Moving window
+    if('up' in keys):
+        window.centerY-=4
+        xray.centerY=window.centerY
+        flashlight.centerY=window.centerY
+        ###### NOT IS HERE AND BELOW                                            N  O  T      I  S      H E R E
+        if(not guide.visible == False):
+            guide.visible=False
+            guide2.visible=False
+            guide3.visible=False
+            guide4.visible=False
+            
+    elif('down' in keys):
+        window.centerY+=4
+        flashlight.centerY=window.centerY
+        xray.centerY=window.centerY
+        if(not guide.visible == False):
+            guide.visible=False
+            guide2.visible=False
+            guide3.visible=False
+            guide4.visible=False
+            
+    elif('left' in keys):
+        window.centerX-=4
+        flashlight.centerX=window.centerX
+        xray.centerX=window.centerX
+        if(not guide.visible == False):
+            guide.visible=False
+            guide2.visible=False
+            guide3.visible=False
+            guide4.visible=False
+            
+    elif('right' in keys):
+        window.centerX+=4
+        flashlight.centerX=window.centerX
+        xray.centerX=window.centerX
+        if(not guide.visible == False):
+            guide.visible=False
+            guide2.visible=False
+            guide3.visible=False
+            guide4.visible=False
+        
+    if('a' in keys):
+        window.radius+=3
+        flashlight.radius=window.radius
+        xray.radius = window.radius
+        if(not guide.visible == False):
+            guide.visible=False
+            guide2.visible=False
+            guide3.visible=False
+            guide4.visible=False
+    elif('s' in keys):
+        window.radius-=3
+        flashlight.radius=window.radius
+        xray.radius = window.radius
+        if(not guide.visible == False):
+            guide.visible=False
+            guide2.visible=False
+            guide3.visible=False
+            guide4.visible=False
+    
+    ####Changing size of window    
+    if(window.radius < 25):
+        window.radius = 25
+        flashlight.radius=window.radius
+        xray.radius = window.radius
+    elif(window.radius > 200):
+        window.radius = 200
+        flashlight.radius=window.radius
+        xray.radius = window.radius
+    
+    ######  OR IS HERE AND BELOW                                                O R    I S     H E R E 
+    ####Wraparound     
+    if(window.left >= 400 or flashlight.left>=400 or xray.left >= 400):
+        window.right=0
+        flashlight.right=0
+        xray.right=0
+    elif(window.right <= 0 or flashlight.right<=0 or xray.right <= 0):
+        flashlight.left=400
+        window.left=400
+        xray.left = 400
+    elif(window.bottom <= 0 or flashlight.bottom <=0 or xray.bottom <=0):
+        window.top=400
+        flashlight.top=400
+        xray.top = 400
+    elif(window.top >=400 or flashlight.top >= 400 or xray.top >= 400):
+        window.bottom=0
+        flashlight.bottom = 0
+        xray.bottom = 0
+    
+    ###Fish changes color when flashlight turns on
+    ###Fish 1 (top)
+    if(window.containsShape(fishHead) == True):
+        if(flashlight.visible == True):
+            fishHead.fill= gradient(rgb(244,67,54),rgb(239,83,80),start='top')
+            fishDetail.fill = rgb(211,47,47)
+            fishDetail2.fill = rgb(211,47,47)
+            xray.visible=False
+    else:
+        fishHead.fill=gradient('orange',rgb(251,140,0),start='bottom')
+        fishDetail.fill=rgb(245,124,0)
+        fishDetail2.fill=rgb(245,124,0)
+        
+    #### X ray
+    if('q' in keys):
+        if(app.xrayCount >= 9 and window.containsShape(fishHead) == True):
+            if(not xray.visible == True):
+                fishHead.visible=False
+                fishEye.visible=False
+                fishDetail.visible=False
+                fishDetail2.visible=False
+                flashlight.visible=False
+                
+                xray.visible=True
+                
+                fish.visible=True
+                fish1.visible=True
+                fish2.visible=True
+                fish3.visible=True
+                fish4.visible=True
+                fish5.visible=True
+            
+        else:
+            xray.visible=False
+            
+            fishHead.visible=True
+            fishEye.visible=True
+            fishDetail.visible=True
+            fishDetail2.visible=True
+            
+            fish.visible=False
+            fish1.visible=False
+            fish2.visible=False
+            fish3.visible=False
+            fish4.visible=False
+            fish5.visible=False
+    
+            fishHead.fill=gradient('orange',rgb(251,140,0),start='bottom')
+            fishDetail.fill=rgb(245,124,0)
+            fishDetail2.fill=rgb(245,124,0)
+
+    
+    ####Fish 2 (bottom)    
+    ###Flashlight
+    if(window.containsShape(pFishHead) == True):
+        if(flashlight.visible==True):
+            pFishHead.fill = gradient(rgb(230,74,25),rgb(216,67,21),start='bottom')
+            pFishDetail.fill = rgb(191,54,12)
+            pFishDetail2.fill = rgb(191,54,12)
+    else:
+        pFishHead.fill = gradient(rgb(216,27,96),rgb(233,30,99),start='top')
+        pFishDetail.fill = rgb(194,24,91)
+        pFishDetail2.fill = rgb(194,24,91)
+    
+    ### X ray        
+    if('e' in keys):
+        if(app.xrayCount >= 9 and window.containsShape(pFishHead)==True):
+            if(not xray.visible == True):
+                pFishHead.visible=False
+                pFishEye.visible=False
+                pFishDetail.visible=False
+                pFishDetail2.visible=False
+                flashlight.visible=False
+        
+                xray.visible=True
+                
+                pfish.visible=True
+                pfish1.visible=True
+                pfish2.visible=True
+                pfish3.visible=True
+                pfish4.visible=True
+                pfish5.visible=True
+    
+        else:
+            xray.visible=False
+            
+            pFishHead.visible=True
+            pFishEye.visible=True
+            pFishDetail.visible=True
+            pFishDetail2.visible=True
+            
+            pfish.visible=False
+            pfish1.visible=False
+            pfish2.visible=False
+            pfish3.visible=False
+            pfish4.visible=False
+            pfish5.visible=False
+    
+            pFishHead.fill = gradient(rgb(216,27,96),rgb(233,30,99),start='top')
+            pFishDetail.fill = rgb(194,24,91)
+            pFishDetail2.fill = rgb(194,24,91)
+    
+    ###ENding        
+    if('m' in keys):        
+        if(flashlight.visible==True):
+            endTheme2.visible=True
+            goodEnd.visible=True
+            goodEnd2.visible=True
+            goodEnd3.visible=True
+            goodEnd4.visible=True
+            app.stop()
+            battery.visible=False
+            battery2.visible=False
+            
+            if(b3.visible==True):
+                b1.visible=False
+                b2.visible=False
+                b3.visible=False
+            
+            if(not guide.visible == False):
+                guide.visible=False
+                guide2.visible=False
+                guide3.visible=False
+                guide4.visible=False
+            
+        elif(xray.visible==True):
+            endTheme1.visible=True
+            badEnd.visible=True
+            badEnd2.visible=True
+            badEnd3.visible=True
+            app.stop()
+            
+            battery.visible=False
+            battery2.visible=False
+            
+            b1.visible=False
+            b2.visible=False
+            b3.visible=False
+            
+            if(not guide.visible == False):
+                guide.visible=False
+                guide2.visible=False
+                guide3.visible=False
+                guide4.visible=False
+     
+def onKeyPress(key):
+    #### Increase the app.xrayCount
+    if(key == 'space'):
+        app.xrayCount+=1
+        if(app.xrayCount == 3):
+            b1.visible=True
+        if(app.xrayCount == 6):
+            b2.visible=True
+        if(app.xrayCount == 9):
+            b3.visible=True
+
+    
