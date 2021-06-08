@@ -1,0 +1,482 @@
+#Function defined:seaLines (61); makeClouds (209)
+#Function called 1: seaLines -> from line 64 to 69 (64,65,66,67,68,69)
+#Function called 2: makeClouds -> line 214 and 215
+#onMousePress: Line 232
+#onMouseRelease: Line 247
+#Property Change 1: visible (from line 234 to the end)
+#Property Change 2: radius (line 238 & 238 (make bigger), line 352,353 (return to normal))
+#Property Change 3: opacity (from 312 to 325 (change), from 327 to 340 (return to normal))
+#Property Change 4: value- line 273 (change the girl's thought/saying)
+#Property Change 5: centerY (line 304 and 310) Used to change the centerY of the sun and the girl's thought/saying
+
+#Please ask me if you're having a hard time in finding things. Thank you! :D 
+
+####Nature###
+#The sky
+app.background=rgb(203,210,251)
+
+#Sun's details
+a = Line(158,252,125,249,fill=rgb(255,249,196),lineWidth=2,opacity=45)
+b = Line(162,240,147,237,fill=rgb(255,249,196),lineWidth=2,opacity=45)
+c = Line(171,227,118,206,fill=rgb(255,249,196),lineWidth=2,opacity=45)
+d = Line(178,217,157,206,fill=rgb(255,249,196),lineWidth=2,opacity=45)
+e = Line(190,209,156,159,fill=rgb(255,249,196),lineWidth=2,opacity=45)
+f = Line(203,204,188,167,fill=rgb(255,249,196),lineWidth=2,opacity=45)
+g = Line(215,203,214,177,fill=rgb(255,249,196),lineWidth=2,opacity=45)
+h = Line(230,205,244,156,fill=rgb(255,249,196),lineWidth=2,opacity=45)
+i = Line(241,212,251,193,fill=rgb(255,249,196),lineWidth=2,opacity=45)
+j = Line(250,217,275,194,fill=rgb(255,249,196),lineWidth=2,opacity=45)
+k = Line(259,228,274,219,fill=rgb(255,249,196),lineWidth=2,opacity=45)
+l = Line(264,239,296,230,fill=rgb(255,249,196),lineWidth=2,opacity=45)
+m = Line(269,251,283,251,fill=rgb(255,249,196),lineWidth=2,opacity=45)
+    
+#Moutains
+#Behind Left
+Polygon(0,261,0,50,7,102,39,15,127,265,fill=rgb(173,183,184))
+#Behind left moutain's details
+Polygon(67,92,39,13,7,100,0,48,0,137,16,132,33,184,52,150,73,188,94,170,fill=rgb(249,243,243))
+#Left
+Polygon(0,261,0,95,16,63,41,136,58,110,107,265,fill=rgb(216,225,225))
+#Left moutain's details
+Polygon(0,93,16,61,41,134,58,108,72,153,57,171,34,162,27,175,11,163,0,180,fill='snow')
+#Behind Right
+Polygon(400,261,347,119,342,130,333,98,285,265,fill=rgb(173,183,184))
+#Behind right moutain's details
+Polygon(312,169,333,96,342,128,347,117,367,174,347,169,332,186,323,180,314,189,fill=rgb(249,243,243))
+#Right
+Polygon(301,265,339,156,344,171,372,60,379,126,386,119,400,261,fill=rgb(216,225,225))
+#Right moutain's details
+Polygon(393,186,386,117,379,124,372,58,344,169,339,154,323,201,343,192,354,207,373,216,fill='snow')
+
+#Sun
+sun = Circle(215,262,49,fill=gradient(rgb(255,171,0),rgb(255,196,0),rgb(255,215,64),start='bottom'))
+
+#Sea
+Rect(0,261,400,400,fill=rgb(0,151,167))
+
+#Details for the sea
+Oval(212,264,55,4,fill='white',opacity=30)
+Oval(207,270,40,3,fill='white',opacity=25)
+Oval(204,276,35,2,fill='white',opacity=20)
+
+### FUNCTION IS HEREEEEEEEEEEE!!!!!!!###                                  F U N C T I O N
+
+def seaLines(b1,b2,b3,b4,o):
+    Line(b1,b2,b3,b4,fill=rgb(0,180,200),opacity=o)
+
+seaLines(14,268,72,268,50)
+seaLines(48,273,94,273,40)
+seaLines(318,278,386,278,30)
+seaLines(364,285,303,285,20)
+seaLines(45,330,128,331,17)
+seaLines(108,338,21,337,15)
+
+#Stuff on the boat 
+stuff = Polygon(284,329,289,296,306,279,336,263,362,280,375,303,352,335,fill='gainsboro')
+shadowS = Polygon(362,280,336,263,306,279,289,296,288,308,304,304,305,297,320,296,323,289,338,293,341,283,364,285,fill='silver')
+safety = Circle(329,307,21,fill=None,border='red',borderWidth=10)
+sL = Line(333,297,337,287,fill='white',lineWidth=5)
+sL2 = Line(319,287,324,297,fill='white',lineWidth=5)
+sL3 = Line (309,298,319,302,fill='white',lineWidth=5)
+sl4 = Line(339,302,348,298,fill='white',lineWidth=5)
+paddle = Line(393,282,310,341,fill='sienna',lineWidth=10)
+
+####Waiting girl###
+#Arm 1
+arm2 = Polygon(206,275,190,287,186,298,187,301,195,303,196,296,199,293,207,291,fill=gradient('seaGreen',rgb(29,109,64),rgb(29,109,64),start='bottom'))
+upArm =Polygon(203,277,180,269,174,276,204,285,fill=gradient('seaGreen',rgb(29,109,64),rgb(29,109,64),start='top'),visible=False) 
+
+#Jacket
+Polygon(202,277,209,318,242,325,225,281,fill='seaGreen')
+Oval(217,273,40,18,fill='seaGreen')
+Oval(214,275,25,13,fill='darkOliveGreen')
+#Head
+Circle(208,259,16,fill=rgb(247,198,177))
+#Shirt
+Line(211,281,219,308,fill='paleGoldenRod',lineWidth=8)
+
+#Arm 2
+arm1 = Polygon(225,281,232,279,241,296,235,306,226,304,229,294,fill=gradient('seaGreen',rgb(32,122,71),rgb(32,122,71),start='top'))
+upArm2 = Polygon(221,281,244,265,250,272,236,280,224,286,fill=gradient('seaGreen',rgb(32,122,71),rgb(32,122,71),start='bottom'),visible=False)
+
+#Eye(left)
+eye1 = Circle(198,262,2)
+#Eye(right)
+eye2 = Circle(210,263,2)
+
+#Hair
+Polygon(212,255,205,259,203,257,200,258,195,259,190,264,190,253,196,245,207,241,218,242,225,250,225,259,224,263,221,266,218,260,217,262,215,259,fill=rgb(46,46,46))
+RegularPolygon(228,261,5,3,fill=rgb(46,46,46),rotateAngle=290)
+
+#Hands
+upHand = Oval(175,268,7,5,fill=rgb(247,198,177),rotateAngle=140,visible=False)
+upHand2 = Oval(251,266,7,5,fill=rgb(247,198,177),rotateAngle=50,visible=False)
+hand1 = Oval(190,304,6,4,fill=rgb(247,198,177))
+hand2 = Oval(227,307,6,4,fill=rgb(247,198,177))
+
+#Face
+mouth = Line(201,269,208,269)
+mouth2 = Oval(204,268,8,4,visible=False)
+tongue = Oval(204,269,4,3,fill='red',visible=False)
+drool = Line(207,269,207,272,fill='lightSeaGreen',lineWidth=2,visible=False)
+blush = Oval(214,267,3,2,fill=rgb(255,82,82),visible=True)
+blush2 = Oval(194,266,3,2,fill=rgb(255,82,82),visible=True)
+
+sparkle = Star(186,266,4,4,fill='white',visible=False)
+
+#Thoughts
+think = Label('I am hungry',167,270,size=8,font='arial')
+
+#Boat
+boat = Polygon(187,307,375,308,359,353,200,352,fill=rgb(111,81,69))
+Line(197,313,252,315,fill=rgb(102,72,62))
+Line(208,317,243,319,fill=rgb(102,72,62))
+Line(213,321,229,322,fill=rgb(102,72,62))
+Line(286,324,344,325,fill=rgb(102,72,62),lineWidth=1)
+Line(296,328,353,330,fill=rgb(102,72,62),lineWidth=1)
+wood = Line(308,342,319,316,fill=rgb(102,74,61),lineWidth=60)
+Circle(295,312,2,fill='darkKhaki')
+Circle(321,339,2,fill='darkKhaki')
+Circle(335,333,2,fill='darkSeaGreen')
+wood2 = Line(212,338,247,332,fill=rgb(102,67,55),lineWidth=20)
+Circle(218,332,3,fill='darkKhaki')
+Circle(239,336,2,fill='darkSeaGreen')
+Line(262,340,294,343,fill=rgb(102,72,62))
+Line(285,347,271,345,fill=rgb(102,72,62))
+Line(262,321,292,321,fill=rgb(102,72,62),lineWidth=1)
+Line(354,343,335,342,fill=rgb(102,72,62),lineWidth=1)
+
+#Boat's shadow
+boatShadow = Polygon(200,352,359,353,364,377,192,380,fill=rgb(111,81,69),opacity=35)
+
+####The nagging boy####
+#Face
+bFace = Circle(77,324,16,fill=rgb(249,211,195),visible=False)
+
+#Arm1 (right)
+bArm1 = Polygon(82,345,107,340,119,310,122,316,110,348,85,354,fill=rgb(249,211,195),visible=False)
+#Arm2 (left)
+bArm2 = Polygon(69,345,47,353,42,370,47,374,51,358,69,354,fill=gradient(rgb(0,151,167),rgb(249,211,195),rgb(249,211,195),rgb(247,198,177),start='bottom'),visible=False)
+
+#Body
+bBody = Polygon(66,353,88,353,86,378,64,377,fill=gradient(rgb(0,151,167),rgb(249,211,195),rgb(249,211,195),start='bottom'),visible=False)
+
+#Neck
+bNeck = Circle(77,353,11,fill=rgb(249,211,195),visible=False)
+
+#Fish (body)
+fBody = Polygon(120,316,109,341,120,357,132,341,fill=rgb(13,71,161),visible=False)
+#Fish (tail)
+fTail = Polygon(119,311,132,299,106,299,fill=rgb(13,71,161),visible=False)
+
+#Hand
+bHand = Oval(121,314,9,7,fill=rgb(247,198,177),rotateAngle=45,visible=False)
+
+#Fish details
+fDetails = Line(111,341,130,341,fill=rgb(35,93,183),lineWidth=2,visible=False)
+fDetails2 = Line(127,336,114,336,fill=rgb(35,93,183),lineWidth=2,visible=False)
+fDetails3 = Line(117,331,124,331,fill=rgb(35,93,183),lineWidth=2,visible=False)
+#Fish (eye)
+fEye = Label('x',122,346,font='monospace',size=7,bold=True,visible=False)
+
+#Boy's face
+#Eyes
+bEye = Circle(71,324,3,visible=False)
+bEye2 = Circle(86,321,3,visible=False)
+#Eyebrowns
+bEB = Line(69,318,74,319,visible=False)
+bEB2 = Line(82,316,86,314,visible=False)
+#Mouth
+bMouth = Oval(80,330,15,10,rotateAngle=350,visible=False)
+#Tongue
+bTongue = Oval(80,332,8,4,fill='red',rotateAngle=353,visible=False)
+
+#Hair
+bHair = Polygon(76,315,74,320,71,315,65,324,63,320,59,332,57,316,62,308,71,303,84,304,92,312,91,323,86,312,80,316,fill=gradient(rgb(191,91,76),rgb(255,76,61),start='bottom'),visible=False)
+
+#Shouting
+bShouting = Label('This is your 5th!',61,289,size=12,fill=rgb(255,187,51),rotateAngle=341,font='courier',bold=True,visible=False)
+bBlush = Oval(68,328,3,2,fill=rgb(240,98,146),rotateAngle=340,visible=False)
+bBlush2 = Oval(90,324,2,1,fill=rgb(240,98,146),rotateAngle=340,visible=False)
+
+#Necklace
+nL = Line(69,344,76,353,fill=rgb(0,105,92),dashes=False,lineWidth=1,visible=False)
+nL2 = Line(83,343,78,353,fill=rgb(0,105,92),dashes=False,lineWidth=1,visible=False)
+nL3 = RegularPolygon(77,354,4,3,fill=rgb(230,81,0),rotateAngle=180,visible=False)
+
+drop = Oval(70,361,4,6,fill=gradient(rgb(249,211,195),rgb(0,151,167),start='top'),visible=False)
+drop2 = Oval(84,356,3,5,fill=gradient(rgb(249,211,195),rgb(0,151,167),start='top'),visible=False)
+drop3 = Oval(69,332,2,3,fill=gradient(rgb(249,211,195),rgb(0,151,167),start='top'),visible=False)
+drop4 = Oval(94,345,3,4,fill=gradient(rgb(249,211,195),rgb(0,151,167),start='top'),visible=False)
+drop5 = Oval(108,345,2,3,fill=gradient(rgb(249,211,195),rgb(0,151,167),start='top'),visible=False)
+drop6 = Oval(62,353,2,4,fill=gradient(rgb(249,211,195),rgb(0,151,167),start='top'),visible=False)
+drop7 = Oval(49,355,3,4,fill=gradient(rgb(249,211,195),rgb(0,151,167),start='top'),visible=False)
+
+#Nagging
+nag = Line(96,316,104,311,fill='red',opacity=50,visible=False)
+nag2 = Line(97,321,105,320,fill='red',opacity=50,visible=False)
+nag3 = Line(96,327,101,330,fill='red',opacity=50,visible=False)
+
+###Nature 2###
+#Evening
+eve = Rect(0,0,400,400,fill='midnightBlue',opacity=6,visible=False)
+
+###FUNCTION IS HEREEEEEEEEEEE!!!###                                    F U N C T I O N 
+
+#Clouds
+def makeClouds(x,y):
+    Oval(x+108,y+44,70,30,fill='white',opacity=20)
+    Oval(x+83,y+55,50,20,fill='white',opacity=25)
+    Oval(x+125,y+53,38,18,fill='white',opacity=30)
+
+makeClouds(0,0)
+makeClouds(185,0)
+
+#Stars
+Star(301,119,5,4,fill='lavender')
+Star(291,128,3,4,fill='lavender')
+Star(102,156,2,5,fill='lavender')
+Star(106,162,3,5,fill='lavender')
+Star(364,154,4,4,fill='snow')
+Star(382,143,3,4,fill='snow')
+Star(392,126,2,5,fill='lavender')
+Star(37,142,4,4,fill='snow')
+Star(15,127,3,4,fill='snow')
+Star(2,105,4,4,fill='snow')
+Star(19,44,3,5,fill='lavender')
+Star(25,35,4,4,fill='lavender')
+Star(49,49,3,4,fill='snow')
+
+###AFTER CLICK####  MOUSE PRESS IS HEREEEEEEEEEEE!!!         M O U S E    P R E S S
+def onMousePress(mouseX,mouseY):
+    #Background
+    eve.visible=True
+    
+    #Girl
+    eye1.radius+=1
+    eye2.radius+=1
+    
+    arm1.visible=False
+    arm2.visible=False
+    hand1.visible=False
+    hand2.visible=False
+    upArm.visible=True
+    upArm2.visible=True
+    upHand.visible=True
+    upHand2.visible=True
+    
+    mouth.visible=False
+    mouth2.visible=True
+    tongue.visible=True
+    drool.visible=True
+    
+    sparkle.visible=True
+    
+    #Boy
+    bFace.visible=True
+    bArm1.visible=True
+    bArm2.visible=True
+    bBody.visible=True
+    bNeck.visible=True
+    bEye.visible=True
+    bHand.visible=True
+    bEye2.visible=True
+    bEB.visible=True
+    bEB2.visible=True
+    bMouth.visible=True
+    bTongue.visible=True
+    bHair.visible=True
+    bShouting.visible=True
+    bBlush.visible=True
+    bBlush2.visible=True
+    
+    #Waterdrops
+    drop.visible=True
+    drop2.visible=True
+    drop3.visible=True
+    drop4.visible=True
+    drop5.visible=True
+    drop6.visible=True
+    drop7.visible=True
+    
+    #Necklace
+    nL.visible=True
+    nL2.visible=True
+    nL3.visible=True
+    
+    #Nagging
+    nag.visible=True
+    nag2.visible=True
+    nag3.visible=True
+    
+    #Fish
+    fBody.visible=True
+    fTail.visible=True
+    fDetails.visible=True
+    fDetails2.visible=True
+    fDetails3.visible=True
+    fEye.visible=True
+    
+###BUNCH OF CHANGING VARIABLES!!!###                       V A R I A B L E S    A R E    A R O U N D   H E R E !!!
+    #Think
+    think.size+=1
+    think.centerX=167
+    think.centerY=253
+    think.value='My fishh!'
+    think.font='sans'
+    
+    #Nature
+    #Sun
+    sun.centerY+=19
+    
+    #SunShines
+    a.opacity-=35
+    b.opacity-=35
+    c.opacity-=35
+    d.opacity-=35
+    e.opacity-=35
+    f.opacity-=35
+    g.opacity-=35
+    h.opacity-=35
+    i.opacity-=35
+    j.opacity-=35
+    k.opacity-=35
+    l.opacity-=35
+    m.opacity-=35
+    
+    #Sky
+    app.background=gradient(rgb(203,210,251),rgb(129,143,229),start='top')
+    
+    #Stuff on the boat
+    #Stuff
+    stuff.fill=rgb(203,202,202)
+    shadowS.fill=rgb(178,177,177)
+    
+    #Safety
+    safety.border=rgb(236,26,26)
+    sL.fill=rgb(243,243,243)
+    sL2.fill=rgb(243,243,243)
+    sL3.fill=rgb(243,243,243)
+    
+    #Paddle
+    paddle.fill=rgb(144,80,50)
+    
+    #Boat's shadow
+    boatShadow.fill=rgb(93,68,58)
+    
+###RETURN TO NORMAL###     MOUSE RELEASE IS HEREEEEEEEEEE!!!!                M O U S E    R E L E A S E
+    
+def onMouseRelease(mouseX,mouseY):
+    #Background
+    eve.visible=False
+    
+    #Girl
+    eye1.radius=2
+    eye2.radius=2
+    
+    arm1.visible=True
+    arm2.visible=True
+    hand1.visible=True
+    hand2.visible=True
+    upArm.visible=False
+    upArm2.visible=False
+    upHand.visible=False
+    upHand2.visible=False
+    
+    mouth.visible=True
+    mouth2.visible=False
+    tongue.visible=False
+    drool.visible=False
+    
+    sparkle.visible=False
+    
+    think.centerX=167
+    think.centerY=270
+    think.value='I am hungry'
+    think.size=8
+    think.font='arial'
+    
+    #Boy
+    bFace.visible=False
+    bArm1.visible=False
+    bArm2.visible=False
+    bBody.visible=False
+    bNeck.visible=False
+    bEye.visible=False
+    bHand.visible=False
+    bEye2.visible=False
+    bEB.visible=False
+    bEB2.visible=False
+    bMouth.visible=False
+    bTongue.visible=False
+    bHair.visible=False
+    bShouting.visible=False
+    bBlush.visible=False
+    bBlush2.visible=False
+    
+    #Waterdrops
+    drop.visible=False
+    drop2.visible=False
+    drop3.visible=False
+    drop4.visible=False
+    drop5.visible=False
+    drop6.visible=False
+    drop7.visible=False
+    
+    #Necklace
+    nL.visible=False
+    nL2.visible=False
+    nL3.visible=False
+    
+    #Nag
+    nag.visible=False
+    nag2.visible=False
+    nag3.visible=False
+    
+    #Fish
+    fBody.visible=False
+    fTail.visible=False
+    fDetails.visible=False
+    fDetails2.visible=False
+    fDetails3.visible=False
+    fEye.visible=False
+    
+    
+    #Nature
+    #Sun
+    sun.centerY=262
+    
+    #SunShines
+    a.opacity=45
+    b.opacity=45
+    c.opacity=45
+    d.opacity=45
+    e.opacity=45
+    f.opacity=45
+    g.opacity=45
+    h.opacity=45
+    i.opacity=45
+    j.opacity=45
+    k.opacity=45
+    l.opacity=45
+    m.opacity=45
+    
+    #Sky
+    app.background=rgb(203,210,251)
+    
+    #Stuff on boat
+    #Stuff
+    stuff.fill='gainsboro'
+    shadowS.fill='silver'
+    
+    #Safety 
+    safety.border='red'
+    sL.fill='white'
+    sL2.fill='white'
+    sL3.fill='white'
+    
+    #Paddle
+    paddle.fill='sienna'
+    
+    #Boat's shadow
+    boatShadow.fill=rgb(111,81,69)
