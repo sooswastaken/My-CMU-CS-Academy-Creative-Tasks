@@ -1,0 +1,336 @@
+##### Name: Tuong Tran
+##### Project Unit: 10
+##### Instructions:
+##### This game is REALLY simple. First, answer the questions in the beginning of the game, PLEASE follow the 
+##### instrutions!!! Then, you just choose true or false! Oh hey, you have a hint! Hit "h" to receive a hint. Either
+##### size of the screne will have stars, and the clock will counts down. You will only have 110 seconds to answer 
+##### before you're disqualified. Once done, depending on you answer, you will get a different ending! 
+
+##### Requirements:
+##### 1. app.getTextInput: Begins from line 36 (there's a whole bunch there)
+##### 2. Add string to a list: Line 43 and line 187 (In line 187, it's not a string, but I do add it in a list)
+##### 3. Helper variables: Line 136 and begins from line 71
+##### 4. Function with returns a value and for loop: Line 133 and line 249
+##### 5. While loop: Line 153 and from line 175 (there's two under line 175)
+
+### Create background
+app.background = rgb(0,16,25)
+
+### Cutom variables and empty lists
+### Store circles created in future
+app.circles = []
+### Store what the player has typed in
+app.playerSay = []
+### Help make the lines in the game
+lines = Group()
+### Help measure the time
+app.time = 0
+
+### Star
+### These stars help! They start the clock (counts from when the player hit "h" and receive a hint!)
+s1 = Star(0,0,15,10,fill='white',opacity=30)
+s2 = Star(400,0,15,10,fill='white',opacity=30)
+### This is just the destination that the stars will look forward to. Once hit this base, the clock will be on.
+base = Line(0,400,400,400,fill=rgb(0,6,25),lineWidth=20)
+
+##### app.getTextInput is here!!!                                                111111111
+### Questions to ask readers before the game
+time = app.getTextInput('Please enter a digit from 5 to 12')
+dayOrNight = app.getTextInput('AM or PM?')
+whatWouldYou = app.getTextInput('KEEP IT SHORT! What would you say when a person wishes you a nice day? :D')
+whatWouldYou2 = app.getTextInput('KEEP IT SHORT! What would you say when a person loses a game? :<')
+
+##### Add string to a list!! I add the player's answer to a list called app.playerSay!     22222222222
+app.playerSay.append(whatWouldYou)
+app.playerSay.append(whatWouldYou2)
+
+### Draw out the the first two answers the player has typed in
+numberTime = Label(time + ':'+'00',50,30,size=25,fill=rgb(238,155,0),font='monospace')
+letterDN = Label(dayOrNight,110,30,size=25,fill=rgb(238,155,0),font='monospace')
+
+#### This function will stop the game and ask the player to try again. Typically when the player is doing something wrong.
+def stopGame(reason):
+    app.group.clear()
+    Rect(0,0,400,400,fill=rgb(0,16,25))
+    label = Group(
+        Rect(120,80,240,160,fill=None,borderWidth=12,border=rgb(174,32,18)),
+        Label('Try again!',240,160,fill=rgb(174,32,18),bold=True,size=30)
+        )
+    label.rotateAngle=340
+    
+    Label(reason,200,360,fill=rgb(174,32,18),bold=True,size=15)
+    
+    app.stop()
+
+### Just an outside list to choose a random mouth for the sun/star in the game
+o = ['^','-','\/']
+mouth = choice(o)
+
+#### This function makes the title of the game (randomly).
+def makeGI(polygon,star,truE,falsE):
+    ##### Helper variables!!! A LOT OF THEM ARE HERE!!!!!                       333333333
+    if(polygon == 1):
+        p = RegularPolygon(160,160,65,3,fill=rgb(42,157,143))
+    elif(polygon == 2):
+        p = RegularPolygon(160,160,65,10,fill=rgb(42,157,143))
+    elif(polygon == 3):
+        p = RegularPolygon(160,160,65,4,fill=rgb(42,157,143))
+        
+    if(star == 1):
+        s = Star(133,132,60,27,fill=rgb(233,196,106))
+    elif(star == 2):
+        s = Star(133,132,60,8,fill=rgb(233,196,106))
+    elif(star == 3):
+        s = Star(133,132,60,5,fill=rgb(233,196,106))
+        
+    if(truE == 1):
+        t = Label('True',260,131,fill=rgb(244,162,97),font='courier',size=60)
+    elif(truE == 2):
+        t = Label('True',260,131,fill=rgb(244,162,97),font='courier',size=60,italic=True)
+    elif(truE == 3):
+        t = Label('True',260,131,fill=rgb(244,162,97),font='courier',size=60,bold=True)
+        
+    if(falsE == 1):
+        f = Label('False',259,205,fill=rgb(231,111,81),font='courier',size=60)
+    elif(falsE == 2):
+        f = Label('False',259,205,fill=rgb(231,111,81),font='courier',size=60,italic=True)
+    elif(falsE == 3):
+        f = Label('False',259,205,fill=rgb(231,111,81),font='courier',size=60,bold=True)
+        
+    GI = Group(
+        p,
+        s,
+        Circle(112,128,3,fill=rgb(0,16,25)),
+        Circle(143,128,3,fill=rgb(0,16,25)),
+        Label(mouth,128,137,font='courier',bold=True,fill=rgb(0,16,25)),
+        t,
+        f,
+        Label('or',215,169,fill=rgb(38,70,83),font='courier',bold=True,size=27)
+        )
+        
+    GI.centerX-=2
+        
+    return GI
+
+### So, this is where we actually get a random presentation of the game's title. Since these are functions, 
+### I will chose a random number, and according to that number, a different set of drawings will display
+g = [1,2,3]
+a = choice(g)
+
+makeGI(a,a,a,a)
+
+### This is the core of the game: facts! I have 4 different "facts" below, and the player will choose whether these
+### "facts" are true or not! This function gives out a random "fact". Notice that it will return a random string.
+def randomFact():
+    sayings = ['Porcupines can float on rivers',
+              'Dogs usually look up at 90 degrees',
+              'Starfishes do not have brain muscles',
+              'Rabbits vomit when they are sick']
+            
+    return choice(sayings)
+
+### This function make lines. 
+##### Function with for loop and return!!!!!!!!!!                               4444444444
+def makeLines():
+    colors = [rgb(0,95,115),rgb(10,147,150),rgb(148,210,189)]
+    ##### Helper variable!!!!                                                   33333333
+    y = 280
+    
+    for color in colors:
+        line = Line(390,y,400,y,fill=color,lineWidth=40)
+        y+=40
+        lines.add(line)
+            
+    return lines
+
+### Now, this is where it gets confusing. Notice that when I created the randomFact() function, I did not use it 
+### right away. This is because I want to create a label with the value as one of the fact. I will create a label with
+### its color like the background so that it looks like "invisible". Then, I will create the lines, making the "fact" pop up. 
+makeLines()
+saying = Label(randomFact(),190,310,font='monospace',size=15,fill=rgb(0,16,25),bold=True,italic=True)
+hint = Label('Press h receive a hint!',200,360,size=10,fill=rgb(0,16,25),bold=True,italic=True)
+
+##### While loop !!!!!                                                          55555555
+for line in lines:
+    while(line.x1 !=0):
+        line.x1-=5
+
+### This function makes hint.
+def hints():
+    if('Porcupines' in saying.value):
+        h = 'North America porcupines are exellent swimmers'
+    elif('Dogs' in saying.value):
+        h = 'Dogs can move their head but not all the way'
+    elif('Starfishes' in saying.value):
+        h = 'Starfishes have no blood'
+    elif('Rabbits' in saying.value):
+        h = 'Rabbits are physically incapable of throwing up '
+            
+    return h 
+
+### Receives a hint -> mkae the stars continue to duplicate until one of them hit the base -> hit base -> starts clock    
+def onKeyPress(key):
+    if(key == 'h'):
+        hint.value=hints()
+        ##### While is here!                                                    55555555555
+        while(s1.hitsShape(base) == False):
+            Star(s1.centerX,s1.centerY,15,10,fill='white',opacity=10)
+            s1.centerY+=5
+        while(s2.hitsShape(base) == False):
+            Star(s2.centerX,s2.centerY,15,10,fill='white',opacity=10)
+            s2.centerY+=5
+            
+
+#### Make the wheels (true or false) under the title of the game. 
+for x in range(20,381,360):
+    c = RegularPolygon(x,365,30,10,fill=rgb(0,16,25))
+##### Add something to a list!!!                                                2222222
+    app.circles.append(c)
+
+### The true or false wheels
+true = RegularPolygon(app.circles[0].centerX,app.circles[0].centerY,10,10,fill=rgb(244,162,97))
+false = RegularPolygon(app.circles[1].centerX,app.circles[1].centerY,10,10,fill=rgb(231,111,81))
+
+#### Make arrows for the player to know which answer they're choosing (in case they don't know already)
+l1 = Line(335,60,300,99,fill=rgb(132,169,140),arrowEnd=True,visible=False)
+l2 = Line(378,157,335,181,fill=rgb(213,172,169),arrowEnd=True,visible=False)
+
+### This function creates a greeting to you, depending on the time you chose
+def timeAndGreetings():
+    if(time.isdigit() == False or dayOrNight.isalpha() == False):
+        stopGame('Please follow the instructions >:V')
+    else:
+        if((5 <= int(time) < 12) and (str(dayOrNight) == 'AM' or str(dayOrNight) == 'am')):
+            m = 'Good morning!'
+        elif((1<= int(time) <= 6 or int(time) == 12) and (str(dayOrNight) == 'PM' or str(dayOrNight) == 'pm')):
+            m = 'Good evening!'
+        else:
+            m = 'Hi!'
+                    
+        greetings = Label(m,240,30,fill=rgb(202,103,2),font='courier',align='left',size=18,bold=True)
+            
+        return greetings
+    
+timeAndGreetings()
+
+def onStep():
+    ### Make the circles inside the wheels rolling 
+    app.circles[0].rotateAngle+=6
+    app.circles[1].rotateAngle-=6
+    
+    ### This is where we starts the clock (only when the two stars hit the base)
+    if(s1.hitsShape(base) == True and s2.hitsShape(base) == True):
+        app.time+=1
+        if(app.time >= 110):
+            stopGame('You took too long! :((')
+    
+def onMouseMove(mouseX,mouseY):
+    ### If a player's mouse touches a wheel, it will dissapear. This helps the palyer know he/she is choosing that answer.
+    for circle in app.circles:
+        if(circle.contains(mouseX,mouseY) == True):
+            circle.visible=False
+        else:
+            circle.visible=True
+            
+            
+    #### Depending on what wheel you're touching, the arrow will appear accordingly.
+    if(app.circles[0].contains(mouseX,mouseY) == True):
+        l1.visible=True
+        l2.visible=False
+    elif(app.circles[1].contains(mouseX,mouseY) == True):
+        l1.visible=False
+        l2.visible=True
+    else:
+        l1.visible=False
+        l2.visible=False
+
+#### This function creates decoration (even though I name it "create Flower"). It can make a circle with a face, 
+### a flower with or without face, and an egg with or without egg.
+###### Another function that has for loop and return?                           4444444444444
+def createFlower(x,y,h,r,s,color):
+    flower = Group()
+    
+    for i in range(1):
+        flower.add(
+            RegularPolygon(x,y,h,h-5,fill=color,rotateAngle=10*(i)),
+            RegularPolygon(x,y,h,h-5,fill=color,rotateAngle=10*(i+10)),
+            RegularPolygon(x,y,h,h-5,fill=color,rotateAngle=10*(i+20)),
+            RegularPolygon(x,y,h,h-5,fill=color,rotateAngle=10*(i+30)),
+            RegularPolygon(x,y,h,h-5,fill=color,rotateAngle=10*(i+40)),
+            RegularPolygon(x,y,h,h-5,fill=color,rotateAngle=10*(i+50))
+            )
+    
+    flower.add(Circle(x,y,r,fill=rgb(253,189,87)))
+    flower.add(Label(':U',x,y,size=s,rotateAngle=90))
+    
+    return flower
+
+#### This function creates cloud for the comfort end (second end). Just for decoration purposes.    
+def makeCloud(centerX,centerY):
+    Circle(centerX,centerY-22,30,fill=rgb(243,222,138))
+    Circle(centerX+41,centerY+4,25,fill=rgb(243,222,138))
+    Circle(centerX-31,centerY+4,24,fill=rgb(243,222,138))
+    Circle(centerX+4,centerY+4,30,fill=rgb(243,222,138))
+
+#### This function creates the first end, which is the end when the player chose the correct answer.        
+def happyEnd():
+    app.group.clear()
+    
+    Rect(0,0,400,400,fill=rgb(216,225,255))
+    Circle(400,0,200,fill=None,border='white',opacity=15)
+    Circle(310,410,150,fill=None,border='white',opacity=18)
+    createFlower(20,277,40,15,16,gradient(rgb(253,189,87),'white','white'))    
+    createFlower(44,357,25,9,7,gradient(rgb(253,189,87),'white','white'))
+    createFlower(370,306,13,5,0,gradient(rgb(253,189,87),'white','white'))
+    createFlower(362,51,8,3,0,gradient(rgb(253,189,87),'white','white'))
+    createFlower(70,137,8,3,0,gradient(rgb(253,189,87),'white','white'))
+    Circle(0,0,100,fill=None,border='white',opacity=50)
+    
+    Label('Me:',80,80,font='monospace',fill=rgb(42,157,143),size=25)
+    Label('You are correct!',120,80,font='monospace',fill=rgb(42,157,143),size=25,align='left')
+    Label('Have a nice day! :)',120,120,font='monospace',fill=rgb(42,157,143),size=25,align='left')
+    Label('You:',80,200,font='monospace',fill=rgb(42,157,143),size=25)
+    Label(app.playerSay[0],120,200,font='monospace',fill=rgb(42,157,143),size=25,align='left')
+
+    app.stop()
+
+### This is the second end, which is the end when the player chose the wrong answer.   
+def comfortEnd():
+    app.group.clear()
+    
+    Rect(0,0,400,400,fill=rgb(235,148,134))
+    
+    makeCloud(39,66)
+    makeCloud(361,258)
+    
+    createFlower(43,329,40,28,18,None)
+    createFlower(86,372,40,18,9,None)
+    
+    Label(app.playerSay[1],200,200,font='monospace',fill=rgb(126,127,154),bold=True,italic=True,size=20)
+    Label('You lost!',355,375,size=15,font='monospace',fill=rgb(126,127,154),bold=True,italic=True)
+    
+    app.stop()
+    
+def onMousePress(mouseX,mouseY):
+    ### Checks if what "fact" it is showing, and accordingly, the answer will be true or false. 
+    ### When the player choose, depending on the result, he/she will receive a comfort ending or a happy ending.
+    if('Porcupines' in saying.value):
+        if(true.hits(mouseX,mouseY) == True):
+            happyEnd()
+        elif(false.hits(mouseX,mouseY) == True):
+            comfortEnd()
+    elif('Dogs' in saying.value):
+        if(true.hits(mouseX,mouseY) == True):
+            comfortEnd()
+        elif(false.hits(mouseX,mouseY) == True):
+            happyEnd()
+    elif('Starfishes' in saying.value):
+        if(true.hits(mouseX,mouseY) == True):
+            happyEnd()
+        elif(false.hits(mouseX,mouseY) == True):
+            comfortEnd()
+    elif('Rabbits' in saying.value):
+        if(true.hits(mouseX,mouseY) == True):
+            comfortEnd()
+        elif(false.hits(mouseX,mouseY) == True):
+            happyEnd()
