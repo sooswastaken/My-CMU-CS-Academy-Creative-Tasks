@@ -1,0 +1,609 @@
+###A little note for Mr. Keel, those lines in orange are your requirements. Those are in greens are either topics, 
+#####group, or comments. If you want to save time, just scroll down and stop at orange lines, or see my list below.
+###If you can't find something, notice me. Thank you!
+
+#####Chart: 
+##### Multiple events trigger a funtion:
+###### Function 1: drawFish ; line 590
+###### Function 2: drawOrange ; line 594
+###### Function 3: makeABread ; line 598
+###### onMouseDrag: line 455
+##### onMouseMove: line 475  
+
+
+### Behind the scene
+#Sky
+app.background='skyBlue'
+
+#The Sun
+#Sunshine
+sunshine = Circle(207,244,74,fill=None,border=rgb(255,241,118),opacity=25)
+sunshine2 = Circle(207,249,68,fill=rgb(255,241,118),opacity=25)
+#Sun
+sun = Circle(207,253,52,fill=rgb(255,235,59),opacity=98) 
+
+#Behind mountains
+Polygon(0,119,16,158,43,30,117,243,0,243,fill=rgb(224,224,224))
+Polygon(307,243,362,19,386,99,393,73,400,108,400,243,fill=rgb(224,224,224))
+
+#Behing moutains' deco
+Polygon(0,118,16,157,43,29,84,148,76,143,72,174,49,159,39,187,25,174,13,202,0,191,fill=rgb(243,243,243))
+Polygon(400,107,393,72,386,98,362,18,331,143,345,143,352,155,368,132,376,173,387,153,395,182,400,177,fill=rgb(243,243,243))
+
+#Front mountains 
+Polygon(0,400,0,236,0,165,20,62,51,142,55,113,99,241,306,241,327,121,337,143,367,57,400,159,400,400,fill=rgb(234,236,238))
+#Front Mountains' deco
+Polygon(0,164,20,61,51,141,55,112,77,180,65,169,60,193,42,177,38,194,30,187,21,204,9,192,0,203,fill='snow')
+Polygon(315,186,327,120,337,142,367,57,400,158,400,207,382,188,373,210,345,179,335,193,325,179,313,194,fill='snow')
+
+###Ocean
+Rect(0,241,400,159,fill=rgb(2,112,177))
+#Ocean's deco
+Circle(207,241,52,fill=rgb(255,235,59),opacity=13)
+
+###Stuff on boat
+#Paddle
+Line(334,292,400,260,fill='sienna',lineWidth=4)
+
+#Box things
+#Number 1
+Rect(305,262,35,27,fill=rgb(194,24,91))
+Line(305,268,340,268,fill=rgb(255,128,171))
+Line(311,266,311,270,fill='antiqueWhite')
+# Number 2
+Rect(315,258,55,30,fill=rgb(26,35,126))
+Rect(315,258,55,11,fill=rgb(48,63,159))
+RegularPolygon(342,269,3,3,fill=rgb(235,238,88),rotateAngle=180)
+
+#Shadows
+Polygon(315,273,315,258,370,258,370,261,fill='midnightBlue',opacity=40)
+Polygon(305,262,340,262,340,266,305,273,fill='midnightBlue',opacity=10)
+
+#Life buoy (not the soap branch thing.)  
+Circle(361,275,14,fill=None,border='white',borderWidth=7)
+Line(354,262,359,270,fill='red',lineWidth=5)
+Line(371,264,365,271,fill='red',lineWidth=5)
+Line(346,273,354,275,fill='red',lineWidth=5) 
+Line(367,277,375,276,fill='red',lineWidth=5)
+
+###Boat (part 1)
+#Rope from boat
+Line(45,274,79,307,fill='bisque',lineWidth=3)
+Line(233,310,259,280,fill='bisque',lineWidth=3)
+#The wooden thing that boats would tie on
+Rect(36,260,18,35,fill=rgb(203,175,137))
+Circle(45,258,9,fill=rgb(203,175,137))
+
+#Tied rope
+Line(35,268,54,266,fill='bisque',lineWidth=3)
+Circle(35,268,2,fill='bisque')
+Circle(54,266,2,fill='bisque')
+Line(35,274,55,272,fill='bisque',lineWidth=3)
+Circle(35,274,2,fill='bisque')
+Circle(55,272,2,fill='bisque')
+
+###Boat (part 2)
+Polygon(379,275,255,278,280,304,366,303,fill=rgb(141,110,99))
+Polygon(255,278,273,304,366,304,379,275,fill='maroon',opacity=20)
+Polygon(274,278,379,275,366,303,306,303,fill='maroon',opacity=10)
+    
+###Island
+def drawWood(x,y,width,height):
+    Rect(x,y,width,height,fill='tan')
+
+def drawWood2(y3,y4,y5,y6,y7):
+    drawWood(0,y3,400,20)
+    drawWood(0,y4,400,20)
+    drawWood(0,y5,400,20)
+    drawWood(0,y6,400,20)
+    drawWood(0,y7,400,20)
+    
+drawWood2(295,317,339,361,383)
+Rect(0,295,400,105,fill='tan',opacity=50)
+
+#Lines between the woods
+#####                                                                           H E L P E R    F U N C T I O N
+def drawLine(X1,Y1,X2,Y2):
+    Line(X1,Y1,X2,Y2,fill=rgb(193,165,128),lineWidth=2)
+    
+def drawLine2(point1,point21,point22,point23,point24,point3):
+    drawLine(point1,point21,point3,point21)
+    drawLine(point1,point22,point3,point22)
+    drawLine(point1,point23,point3,point23)
+    drawLine(point1,point24,point3,point24)
+
+drawLine2(0,316,338,360,382,400)
+
+###In front of the scene 
+
+###The kids 
+
+###Boy
+#Boy's Head
+Circle(124,237,19,fill=rgb(249,211,195))
+
+#Boy's Face
+#Left eye
+bEye = Circle(115,238,3)
+bEye3 = Oval(115,238,8,4,visible=False)
+bEye5 = Circle(118,239,2,visible=False)
+
+#Right eye
+bEye2 = Circle(132,238,3)
+bEye4 = Oval(132,238,8,4,visible=False)
+bEye6 = Circle(132,239,2,visible=False)
+
+#Left eyebrown
+bLeftEyebrown = Line(111,232,119,233)
+#Right eyebrown
+bRightEyebrown = Line(129,233,136,232)
+
+#Boy's Mouth
+bMouth = Oval(124,246,10,5)
+bMouth2 = Line(120,245,127,245,visible=False)
+
+#Blush
+Oval(110,241,3,2,fill=rgb(240,98,146))
+Oval(136,241,3,2,fill=rgb(240,98,146))
+
+#Tongue
+bTongue = Oval(124,247,6,2,fill='red')
+
+#Left arm 
+Polygon(104,273,98,315,104,315,108,277,fill=rgb(249,211,195))
+Oval(100,317,12,7,fill=rgb(249,211,195),rotateAngle=5)
+
+### Boy's raising right arm 
+bRaiseArm = Polygon(130,264,177,264,177,270,138,273,fill=rgb(249,211,195))
+bRaiseHand = Oval(179,266,10,14,fill=rgb(249,211,195),rotateAngle=147)
+
+bHoldArm = Polygon(148,263,163,262,163,248,169,247,169,264,168,267,166,269,148,272,fill=rgb(249,211,195),visible=False)
+
+bHoldHand = Oval(168,243,8,13,fill=rgb(249,211,195),visible=False)
+
+#Water droplets on boy's face
+def drawDroplet(centerX,centerY,width,height):
+    Oval(centerX,centerY,width,height,fill=gradient(rgb(30,136,229),rgb(249,211,195),rgb(249,211,195),start='bottom'))
+    
+drawDroplet(112,244,4,7)
+drawDroplet(135,248,4,6)
+
+#Water droplets on boy's arm
+drawDroplet(158,267.5,3,4)
+drawDroplet(104,295,3,4)
+droplet = Oval(170,266,2,3,fill=gradient(rgb(30,136,229),rgb(249,211,195),rgb(249,211,195),start='bottom'))
+drawDroplet(101,306,2,3)
+
+# Boy's Hair
+Polygon(107,237,109,232,108,237,114,229,116,233,124,227,125,236,133,229,134,238,138,235,140,244,144,234,140,221,127,212,123,213,108,219,102,231,105,245,fill=rgb(201,97,82))
+
+###Clothes (body)
+#Leg (slipper)
+Polygon(110,309,107,377,113,377,119,309,fill=rgb(247,198,177))
+Polygon(135,309,138,377,132,377,126,309,fill=rgb(247,198,177))
+
+#Shorts
+Polygon(108,311,138,311,140,345,125,347,122,333,119,347,104,345,fill=rgb(0,84,70))
+Polygon(108,311,138,311,138,317,107,317,fill=rgb(0,68,56),opacity=25)
+Line(108,321,104,345,fill=rgb(0,150,136))
+Line(137,321,139,345,fill=rgb(0,150,136))
+
+#Sleeves
+#Left
+Polygon(111,264,101,273,109,282,fill=rgb(233,233,210))
+
+#Raising right arm's sleeve 
+Polygon(132,262,149,261,150,278,137,276,fill=rgb(233,233,210))
+
+#Shirt
+Polygon(109,269,137,269,142,311,138,317,107,317,103,311,fill=rgb(233,233,210))
+
+#Sleeves' deco
+#Left
+Line(101,273,109,282,fill=rgb(128,203,196),lineWidth=4)
+#Raising right arm
+Line(150,278,149,261,fill=rgb(128,203,196),lineWidth=4)
+
+#Boy's saying 
+bSaying = Label('Buy me food',83,254,size=8,font='arial')
+hungry = Label('I am hungry',168,233,size=8,font='arial')
+
+
+###Pouch of money
+moneyPouch = Polygon(182,266,181,264,184,258,173,259,177,263,178,267,172,279,175,285,179,289,186,287,189,276,fill=rgb(121,85,72))
+
+moneyPouch2 = Polygon(166,240,162,234,174,233,170,240,175,253,172,260,160,259,157,252,fill=rgb(121,85,72),visible=False)
+
+####Finger on pouch of money
+raiseFinger = Oval(177,265,5,3,fill=rgb(249,211,195))
+
+raiseFinger2 = Oval(165,241,5.5,3,fill=rgb(249,211,195),rotateAngle=20,visible=False)
+
+####Pouch of money's shadow
+moneyShadow = Polygon(183,268,189,276,186,287,179,289,fill=rgb(108,76,85),opacity=70)
+
+moneyShadow2 = Polygon(170,240,164,259,172,260,175,253,fill=rgb(108,76,85),opacity=70,visible=False)
+
+#Shirt (neck)
+Circle(123,275,16,fill=rgb(233,233,210))
+
+#Boy's necklace
+Line(115,260,122,276,lineWidth=1)
+Line(130,260,124,273,lineWidth=1)
+RegularPolygon(122,275,4,3,fill=rgb(216,76,0),rotateAngle=180)
+
+#Left leg
+#Base of the slipper
+Oval(106,384,18,10,fill=rgb(197,17,98),rotateAngle=167)
+#Feet
+Oval(105,383,14,7,fill=rgb(249,211,195),rotateAngle=169)
+#Slipper
+Line(102,379,99,385,fill=rgb(197,17,98))
+Line(99,384,108,385,fill=rgb(197,17,98))
+#Right leg 
+#Base of the slipper 
+Oval(137,384,18,10,fill=rgb(197,17,98),rotateAngle=13)
+#Feet
+Oval(138,383,14,7,fill=rgb(249,211,195),rotateAngle=15)
+#Slipper
+Line(142,379,143,384,fill=rgb(197,17,98))
+Line(143,384,134,385,fill=rgb(197,17,98))
+
+####Girl
+#Ponytail
+RegularPolygon(251,269,4,3,rotateAngle=172,fill=rgb(46,46,46))
+
+#Hat (behind)
+Circle(229,254,22,fill='seaGreen')
+#Head 
+Circle(229,255,14,fill=rgb(247,198,177))
+
+#Body(with clothes)
+#Pants
+Polygon(217,306,208,371,221,373,228,333,236,372,251,372,238,306,fill='grey')
+#Jacket
+#Body
+Polygon(214,286,244,286,248,313,241,318,214,318,208,311,fill='seaGreen')
+#Top neck 
+Circle(229,286,16,fill='seaGreen')
+#Clothes(body) deco
+Line(226,276,226,284,fill='paleGoldenRod')
+Line(226,287,226,289,fill='darkKhaki')
+Line(231,276,231,287,fill='paleGoldenRod')
+Line(231,291,231,293,fill='darkKhaki')
+
+#Left arm
+gLeftArm = Polygon(216,277,202,293,201,294,193,284,188,296,198,308,204,308,215,292,fill=rgb(45,132,83))
+
+###Inside the sleeve (left)
+Oval(191,292,13,6,fill=rgb(43,124,79),rotateAngle=123)
+
+###Hand
+Oval(188,289,9,5,fill=rgb(247,198,177),rotateAngle=142)
+
+###Right arm 
+gRightArm = Polygon(242,276,256,308,253,315,244,316,242,295,fill=rgb(45,132,83),visible=True)
+
+###Hand
+gRightHand = Oval(248,319,8,4,fill=rgb(247,198,177),rotateAngle=343,visible=True)
+
+###Girl's changing right hand 
+gPickArm = Polygon(245,276,239,301,243,306,250,305,252,298,252,277,fill=rgb(45,132,83),visible=False)
+
+gPickHand = Polygon(245,275,244,271,248,263,253,263,255,270,252,275,fill=rgb(247,198,177),visible=False)
+
+#Slippers
+#Left leg 
+Oval(210,379,17,10,fill=rgb(245,124,0),rotateAngle=170)
+Oval(209,378,11,7,fill=rgb(247,198,177),rotateAngle=165)
+Line(207,374,205,380,fill=rgb(230,81,0))
+Line(205,380,213,380,fill=rgb(230,81,0))
+
+#Right leg 
+Oval(246,380,17,10,fill=rgb(245,124,0),rotateAngle=12)
+Oval(247,379,11,7,fill=rgb(247,198,177),rotateAngle=12)
+Line(250,375,250,380,fill=rgb(230,81,0))
+Line(251,380,242,380,fill=rgb(230,81,0))
+
+#Girl's Hair
+Polygon(220,248,212,259,213,249,217,241,225,236,236,238,242,244,244,249,243,260,237,248,235,250,226,248,226,250,fill=rgb(46,46,46))
+
+#Face
+#Girl's Eyes
+gEye = Line(218,253,225,256)
+gEye2 = Line(232,256,240,253)
+
+gEye3 = Circle(223,255,2,visible=False)
+gEye4 = Circle(235,255,2,visible=False)
+
+gEye5 = Circle(225,256,1,visible=False)
+gEye6 = Circle(237,256,1,visible=False)
+
+#Mouth
+gMouth = Polygon(225,261,232,259,231,265)
+smile = Line(225,259,229,265,lineWidth=1,visible=False)
+smile2 = Line(229,265,233,259,lineWidth=1,visible=False)
+
+#Tongue
+gTongue = Oval(230,263,2,2,fill='red')
+
+#Blush
+Oval(217,257,3,2,fill=rgb(255,82,82))
+Oval(240,258,3,2,fill=rgb(255,82,82))
+
+#Girl's saying 
+gSaying = Label('Yes sir',201,270,size=8,font='arial')
+
+###The store
+#Main part
+Rect(44,315,242,85,fill=rgb(55,71,79))
+
+#The HUGE sticks
+#Stick on the left
+Rect(44,173,11,227,fill=rgb(56,71,79))
+#Stick on the right
+Rect(275,173,11,227,fill=rgb(56,71,79))
+
+###The board on top
+Rect(44,135,242,38,fill=rgb(56,71,79))
+
+###Written food number 
+Label('Food number:',105,152,size=14,font='monospace',fill=rgb(176,190,197))
+fNumber = Label(0,175,152,size=24,font='monospace',fill=rgb(176,190,197))
+Label('on counter',219,160,size=8,font='monospace',fill=rgb(176,190,197))
+
+#Cabinet inside
+Rect(55,330,220,70,fill=rgb(38,50,56))
+Line(55,354,275,354,fill=rgb(56,71,79),lineWidth=3)
+Line(55,378,275,379,fill=rgb(56,71,70),lineWidth=3)
+
+#Food inside 
+###Fish
+def drawFish(centerX,centerY,colorbody,colordetail):
+    Polygon(centerX-18,centerY+2,centerX-1,centerY-6,centerX+18,centerY,centerX+28,centerY-2,centerX+28,centerY+10,centerX+18,centerY+5,centerX-1,centerY+8,fill=colorbody)
+    Circle(centerX-9,centerY,1)
+    Line(centerX-1,centerY-4,centerX-1,centerY+5,fill=colordetail)
+    Line(centerX+3,centerY-3,centerX+3,centerY+4,fill=colordetail)
+    Line(centerX+6,centerY-1,centerX+6,centerY+3,fill=colordetail)
+    
+#####                                                                           H E L P E R   F U N C T I O N 
+
+def draw2Fishes(x1,y1,x2,y2,color1,color2,color3,color4):
+    drawFish(x1,y1,color1,color2)
+    drawFish(x2,y2,color3,color4)
+
+draw2Fishes(78,343,90,342,rgb(255,152,0),rgb(255,167,38),rgb(13,71,161),rgb(35,93,183))
+draw2Fishes(79,366,90,366,'whitesmoke','mistyRose',rgb(0,105,92),rgb(128,203,196))
+
+###Oranges
+#####                                                                           H E L P E R   F U N C T I O N 
+def drawDots(a,b):
+    Circle(a,b,0.75,fill=rgb(255,171,145))
+
+def drawOrange(centerX,centerY,colororange,colorleaf1,colorleaf2):
+    Polygon(centerX+1,centerY-7,centerX-4,centerY-9,centerX-9,centerY-6,centerX-3,centerY-4,fill=colorleaf1)
+    Circle(centerX,centerY,7,fill=colororange)
+    Polygon(centerX-1,centerY-8,centerX+4,centerY-10,centerX+9,centerY-6,centerX+3,centerY-4,fill=colorleaf2)
+    drawDots(centerX+1,centerY+2)
+    drawDots(centerX+4,centerY+3)
+    drawDots(centerX+5,centerY-1)
+
+drawOrange(172,345,'orange','paleGreen','lightGreen')
+drawOrange(147,369,rgb(225,112,67),'forestGreen','green')
+
+###Sea urchins
+Rect(0,381,38,32,fill=rgb(56,71,79))
+
+###Sea urchins
+
+Star(28,373,10,20,fill=rgb(14,14,14))
+Star(8,372,10,20,fill=rgb(14,14,14))
+urchin = Star(19,359,10,20,fill=rgb(14,14,14))
+
+###Bread
+def makeABread(centerX,centerY):
+    Oval(centerX,centerY,50,15,fill=rgb(214,168,99))
+    Polygon(centerX-16,centerY-6,centerX-10,centerY,centerX-9,centerY-7,centerX-12,centerY-7,centerX-16,centerY-6,centerX-18,centerY-7,fill=rgb(177,141,86))
+    Polygon(centerX-3,centerY-7,centerX+1,centerY-8,centerX+5,centerY-7,centerX+2,centerY-1,fill=rgb(177,141,86))
+    Polygon(centerX+11,centerY-7,centerX+14,centerY-7,centerX+15,centerY-7,centerX+17,centerY-6,centerX+14,centerY,fill=rgb(177,141,86))
+    
+makeABread(226,344)
+makeABread(242,369)
+
+###The cat 
+#Whiskers
+Line(326,340,364,353,lineWidth=0.5)
+Line(327,354,367,339,lineWidth=0.5)
+
+#Head
+Circle(347,343,13.5,fill=rgb(38,50,56))
+
+#Ears 
+#Left
+Polygon(342,330,330,330,337,345,fill=rgb(38,50,56))
+#Right
+Polygon(352,330,365,330,356,345,fill=rgb(38,50,56))
+
+#Body
+Polygon(341,350,333,388,339,400,358,400,364,388,351,350,fill=rgb(38,50,56))
+
+#Tail
+Polygon(348,392,351,390,357,385,360,377,363,368,363,362,365,359,367,357,371,360,371,364,369,376,358,388,350,392,fill=rgb(28,36,41))
+
+#Details for the cat
+Polygon(341,330,344,329,346,329,349,330,347,337,fill=rgb(28,36,41))
+Polygon(341,363,347,359,352,362,347,364,fill=rgb(28,36,41))
+Polygon(338,371,346,369,354,370,347,374,fill=rgb(28,36,41))
+Polygon(338,379,346,378,355,378,347,383,fill=rgb(28,36,41))
+
+#Saying
+catSaying = Label('They are free',312,363,font='arial',size=8.25,fill=rgb(229,57,53),visible=False)
+#Spark
+catSpark = Star(323,345,6,4,fill=rgb(235,238,88),visible=False)
+
+###Clouds
+def makeClouds(centerX,centerY,p):
+    Oval(centerX-15,centerY+2,45,15,fill='mintCream',opacity=13,visible=p)
+    Oval(centerX-1,centerY-8,45,15,fill='mintCream',opacity=13,visible=p)
+    Oval(centerX+17,centerY+2,45,15,fill='mintCream',opacity=13,visible=p)
+    
+makeClouds(113,73,False)
+
+cloudSymbol = Circle(113,73,15,fill=None,border='mintCream',borderWidth=1,visible=False)
+
+##### O N    M O U S E   D R A G   I S  H E R E                                 O N   M O U S E   D R A G 
+def onMouseDrag(x,y):
+        urchin.centerX= x
+        urchin.centerY= y
+
+###### O N    M O U S E     R E L E A S E   I S   H E R E                       O N   M O U S E   R E L E A S E 
+def onMouseRelease(mouseX,mouseY):
+    if(55 < mouseX < 275):
+        if(173 < mouseY < 330):
+            fNumber.value+=1
+            gRightArm.visible=True
+            gRightHand.visible=True
+            gPickArm.visible=False
+            gPickHand.visible=False
+    if(0 < mouseY < 136):
+            makeClouds(400-mouseX,mouseY,True)
+        
+
+buyingStuff = Label('Fishball',15,314,size=9,font='arial',visible=False)
+
+##### O N     M O U S E    M O V E   I S    H E R E                             O N   M O U S E   M O V E 
+def onMouseMove(mousex,mousey):
+    buyingStuff.centerX = mousex
+    buyingStuff.centerY = mousey
+    #####                                                                       I F - E L S E   C O N D I T I O N
+    if(44 < mousex < 286):
+        if(135 < mousey < 400):
+            buyingStuff.visible=True
+            if(55 < mousex < 130):
+                buyingStuff.value='Fishball'
+                buyingStuff.size=9
+            if(130 < mousex < 195):
+                buyingStuff.value='Orange juice'
+                buyingStuff.size=7.5
+            if(195 < mousex < 275):
+                buyingStuff.value='Sandwitch'
+                buyingStuff.size=8.5
+        else:
+            buyingStuff.visible=False
+    else: 
+        buyingStuff.visible=False
+    
+    if(0 < mousey < 136):
+        cloudSymbol.visible=True
+        cloudSymbol.centerX=mousex
+        cloudSymbol.centerY=mousey
+    else:
+        cloudSymbol.visible=False
+
+
+#####     O N   M O U S E    P R E S S   I S   H E R E                           O N   M O U S E   P R E S S 
+def onMousePress(mouseX,mouseY):
+    ##########                                                                  I F - E L S E   C O N D I T I O N
+    if(0 <= fNumber.value < 2):
+        bSaying.value='...'
+        bMouth.visible=False
+        bTongue.visible=False
+        bMouth2.visible=True
+        
+        gEye.visible=False
+        gEye2.visible=False
+        gEye3.visible=True
+        gEye4.visible=True
+        
+        gMouth.visible=False
+        gTongue.visible=False
+        
+        smile.visible=True
+        smile2.visible=True
+        
+        gSaying.visible=False
+        hungry.visible=False
+        
+        #####                                                                   I F - E L S E   C O N D I T I O N
+    if(2 < fNumber.value < 5):
+        bSaying.value='!!'
+        bEye.visible=False
+        bEye2.visible=False
+        bEye3.visible=True
+        bEye4.visible=True
+    if(5 <= fNumber.value < 7):
+        bSaying.value='wait..stop'
+        
+        bMouth2.visible=False
+        bMouth.visible=True
+        
+        bTongue.visible=True
+        bRaiseArm.visible=False
+        bRaiseHand.visible=False
+        bHoldArm.visible=True
+        bHoldHand.visible=True
+        moneyPouch.visible= False
+        moneyPouch2.visible=True
+        moneyShadow.visible=False
+        moneyShadow2.visible=True
+        raiseFinger.visible=False
+        raiseFinger2.visible=True
+        droplet.centerX=167
+        droplet.centerY=261
+        
+        ########                                                                I F - E L S E   C O N D I T I O N
+    if(7 < fNumber.value < 9):
+        bSaying.value='cannot pay for all'
+        
+    if(fNumber.value >= 10):
+        bSaying.value='??????'
+        
+        catSaying.visible=True
+        catSpark.visible=True
+        
+        bEye4.visible=False
+        bEye3.visible=False
+        bEye5.visible=True
+        bEye6.visible=True
+        
+        gEye3.visible=False
+        gEye4.visible=False
+        gEye5.visible=True
+        gEye6.visible=True
+        
+        smile.visible=False
+        smile2.visible=False
+        
+        bMouth.visible=False
+        bTongue.visible=False
+        
+        ########                                                                I F - E L S E   C O N D I T I O N
+    if(fNumber.value > 10):
+        gSaying.visible=True
+        gSaying.value='ok then..'
+        gSaying.size=6.75
+        
+        #####                                                                   I F - E L S E   C O N D I T I O N
+    if(135<= mouseY <= 400):
+        if(55 < mouseX < 130):
+        #####                                                                   H E L P E R    F U N C T I O N
+            drawFish(mouseX,mouseY,rgb(198,40,40),rgb(239,83,80))
+            
+        if(130< mouseX < 195):
+            #####                                                               H E L P E R    F U N C T I O N
+            drawOrange(mouseX,mouseY,rgb(255,183,77),rgb(56,142,60),rgb(46,125,50))
+    
+        if(195 < mouseX < 275):
+            #####                                                               H E L P E R    F U N C T I O N
+            makeABread(mouseX,mouseY)
+
+    ############                                                                I F - E L S E   C O N D I T I O N
+    if(55 < mouseX < 275):
+        if(173 < mouseY < 330):
+            gRightArm.visible=False
+            gRightHand.visible=False
+            gPickArm.visible=True
+            gPickHand.visible=True
+            
+    if(0 < mouseY < 136):
+        makeClouds(mouseX,mouseY,True)   
