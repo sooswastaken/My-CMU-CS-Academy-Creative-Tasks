@@ -1,0 +1,360 @@
+##### Name: Tuong Tran
+##### Project: Unit 6
+##### Instructions:
+##### Use arrow keys (up, down, left and right) to move the player (black dot, top left corner of the maze, cat-shaped)
+##### AVOID touching the shaded shapes, the border of the maze and areas outside the maze. Or else, you will lose a point and have to start all over again. 
+##### You have 30 lives only, 10 for each shapes on the left side of the game. Notice that in the maze, there are objects which are spinning around. 
+##### Each objects will give you a special gift, but note that most changes that the gifts make (3/4) won't be visible unless you look at the details. Below are my list of objects and their gifts. 
+##### 1. Little black dimond (location at 102, 213): bring the maze up -> prevent any blind spots. 
+##### 2. Little white star (location at 123,305): Erase the maze completely -> REALLY easy to win (or just to try out all of the gifts easily). Note that even though the maze is gone, the objects are still there for you to try. :)
+##### 3. Little white star (location at 247,134): Give you the ability to shrink(press a) and expand (press s). This has a reminder for you at the bottom. 
+##### 4. Little black dimond (location at 306, 245): Give you two extra lives! :DD
+##### IT IS IMPORTANT THAT YOU HIT THE OBJECTS WHEN YOU RELEASE THE KEYS!!!! OR ELSE YOU WILL NOT BE ABLE TO CLAIM THE GIFTS.
+##### To win the game, run into the "house", or the black square at the end of the maze. PRESS i TO SEE THE INSTRUCTIONS YOURSELF!!! PRESS i AGAIN TO RETURN TO THE GAME!!! 
+##### Tips! Don't get too frustrated :)) Keep in mind that the player will get affected (both negatively and positively) ONLY when you release the keys. :DD 
+##### Winning and losing will give you different messages, so see both! Please email me if there are problems. Thank you! :> 
+
+########## Requirements: 
+##### Group: starting from line 46. There are lots of groups below.
+###### Group properties: visiblity (line 157, 166, and starts from 185); position (starts from line 208)
+###### Group method: toFront (starts from line 143), toBack (line 241) 
+###### group.remove(starts from line 223),group.clear (line 318 and 352)
+###### Step Events/ onStep: starts from line 206 
+###### app.stepsPerSecond: starts from line 216 
+###### Objects move differently: The sun (move in a curve), the birds (move vertically), objects in maze rotate,
+###### the clouds (move horizontally), the player (control by arrow keys). You can find these things in action in onStep(line 216) and/or onKeyHold (line 257).
+
+#Settings
+app.life=3
+app.ability1=False
+app.ability2=False
+app.ability3=False
+app.ability4=False
+app.mazeOn=True
+app.earsOn=True
+
+#Background
+app.background=rgb(203,203,203)
+
+#The sun
+sun=Star(100,120,30,400,fill=gradient(rgb(245,245,245),rgb(250,250,250)))
+shine=Star(196,36,50,400,fill='white',opacity=6)
+shine2=Star(196,36,30,400,fill='white',opacity=8)
+
+#Clouds
+##### GROUP IS HERE AND BELOW !                                                  G R O U P S    A R E     H E R E !!!!
+cloud1 = Group(
+    Oval(46,142,70,26,fill='white',opacity=14),
+    Oval(32,153,60,18,fill='white',opacity=13)
+    )
+cloud1.dx=4
+
+cloud2 = Group(
+    Oval(359,233,70,26,fill='white',opacity=14),
+    Oval(360,246,60,18,fill='white',opacity=13)
+    )
+cloud2.dx=-4
+ 
+#Maze base
+base = Rect(54,90,290,243,fill=rgb(63,63,63))
+#Player
+body = Circle(64,112,4)
+ears = Polygon(64,109,61,106,60,110,68,111,68,107,63,109)
+player= Group(
+    body,
+    ears
+    )
+player.dx=1
+player.dy=1
+
+#Moutains 
+moutains = Group(
+    Polygon(400,400,400,355,285,343,68,400,fill=rgb(146,146,146)),
+    Polygon(0,400,330,399,0,333,fill=rgb(117,117,117)),
+    Polygon(0,400,0,367,100,308,289,400,fill=rgb(157,157,157))
+    )
+
+#Birds
+bird1=Group(
+    Line(62,356,52,351,fill=rgb(173,173,173),lineWidth=2),
+    Line(52,351,46,353,fill=rgb(212,212,212),lineWidth=2),
+    Line(62,356,71,350,fill=rgb(212,212,212),lineWidth=2),
+    Line(71,350,78,351,fill=rgb(173,173,173),lineWidth=2)
+    )
+    
+bird1.dy = 1
+
+bird2=Group(
+    Line(342,351,332,347,fill=rgb(99,99,99)),
+    Line(332,347,325,349,fill=rgb(68,68,68)),
+    Line(342,351,352,343,fill=rgb(68,68,68)),
+    Line(352,343,358,344,fill=rgb(99,99,99))
+    )
+    
+bird2.dy= 1
+
+#Maze
+maze=Group(
+    #Main groups
+    Polygon(60,128,96,128,96,150,fill=rgb(26,26,26)),
+    Polygon(62,142,111,188,80,215,83,186,fill=rgb(26,26,26)),
+    Polygon(64,204,67,297,153,268,95,265,102,233,76,256,fill=rgb(26,26,26)),
+    Polygon(107,104,164,105,140,188,fill=rgb(26,26,26)),
+    Polygon(113,219,242,166,233,242,202,229,195,248,fill=rgb(26,26,26)),
+    Polygon(113,297,180,269,210,276,235,256,230,313,180,292,fill=rgb(26,26,26)),
+    Polygon(184,101,162,172,244,152,225,126,210,132,fill=rgb(26,26,26)),
+    Polygon(261,104,256,239,303,236,275,187,280,166,fill=rgb(26,26,26)),
+    Polygon(251,256,325,255,301,308,286,279,fill=rgb(26,26,26)),
+    Polygon(247,271,242,318,315,324,260,293,fill=rgb(26,26,26)),
+    Polygon(279,101,332,106,318,230,300,184,304,137,fill=rgb(26,26,26)),
+    #Adding details
+    Polygon(128,314,176,304,227,326,fill=rgb(26,26,26)),
+    Polygon(112,232,120,249,183,259,fill=rgb(26,26,26)),
+    Polygon(204,100,213,117,239,116,247,123,249,98,fill=rgb(26,26,26)),
+    Polygon(98,297,132,324,71,321,fill=rgb(26,26,26)),
+    Polygon(69,98,84,118,100,107,fill=rgb(26,26,26)),
+    )
+    
+
+#Goal
+House=Rect(317,297,21,21)
+
+#Lives
+live1 = Star(26,23,12,4)
+live2=RegularPolygon(26,65,10,4)
+live3=Group(
+    Oval(22,108,11,18,rotateAngle=150),
+    Oval(30,107,11,18,rotateAngle=202)
+    )
+    
+#Invisible borders
+###### GROUP IS HERE AND BELOW                                                  G R O U P S     A R E    H E R E !!!
+border=Group(
+    Line(54,90,344,90,fill=rgb(63,63,63),lineWidth=2),
+    Line(344,90,344,333,fill=rgb(63,63,63),lineWidth=2),
+    Line(54,90,54,333,fill=rgb(63,63,63),lineWidth=2),
+    Line(54,333,344,333,fill=rgb(63,63,63),lineWidth=2)
+    )
+    
+#Moves
+moves=Label(10,344,46,size=20,font='monospace')
+
+#Group to front   
+moutains.toFront()
+bird1.toFront()
+bird2.toFront()
+player.toFront()
+
+#After game
+gameOver = Group(
+    Rect(0,0,400,400,fill=rgb(8,8,8)),
+    Label('Game Over',200,160,fill='snow',size=30,font='monospace'),
+    Label(':(',200,215,fill='snow',size=30,font='monospace'),
+    Label('Good luck next time :)',200,280,fill='snow',size=13,font='monospace')
+    )
+
+##### GROUP PROPERTIES START FROM HERE                                          G R O U P  P R O P E R T I E S !!!!    
+gameOver.visible=False
+
+gameWinning = Group(
+    Rect(0,0,400,400,fill='snow'),
+    Label('You win!',200,160,fill=rgb(8,8,8),size=30,font='monospace'),
+    Label(':D',200,215,fill=rgb(8,8,8),size=30,font='monospace'),
+    Label('Have a nice day!',200,280,fill=rgb(8,8,8),size=13,font='monospace')
+    )
+    
+gameWinning.visible=False
+
+#Objects
+object1 = Star(247,134,4,4,fill=rgb(245,245,245))
+object2 = Star(123,305,4,4,fill=rgb(245,245,245))
+object3 = RegularPolygon(102,213,3,4,fill=rgb(17,17,17))
+object4 = RegularPolygon(306,245,3,4,fill=rgb(17,17,17))
+
+#Reset game
+def resetGame():
+        moves.value=10
+        player.centerX=64
+        player.centerY=112
+        sun.centerX=100
+        sun.centerY=120
+
+
+#Remidners
+reminder = Label('Press a to shrink, s to expand',200,365,font='courier',size=13)
+reminder.visible=False
+
+#Instructions
+Label('Press i',390,390,font='courier',size=10,align='right')
+
+instruction=Group(
+    Rect(0,0,400,400,fill=rgb(33,33,33)),
+    Label('Instructions',200,40,size=20,fill='white',font='courier'),
+    Label('Press i to return',390,10,size=10,fill='white',font='courier',align='right'),
+    Label('1.',40,120,size=20,fill='white',font='courier'),
+    Label('2.',40,200,size=20,fill='white',font='courier'),
+    Label('3.',40,280,size=20,fill='white',font='courier'),
+    Label('4.',40,360,size=20,fill='white',font='courier'),
+    Label('Use arrow keys to move the player',80,120,fill='white',font='courier',size=14,align='left'),
+    Label('Hit objects to discover their gifts',80,200,fill='white',font='courier',size=14,align='left'),
+    Label('DO NOT cross the border or hit shapes',80,280,fill='white',font='courier',size=14,align='left'),
+    Label('Press z to remove ears, have fun! :)',80,360,fill='white',font='courier',size=14,align='left')
+    )
+    
+instruction.visible=False
+###### STEP EVENTS ARE BELOW HERE                                               S T E P   E V E N T S !!!!!!!!!!!!!
+def onStep(): 
+    ###### GROUP PROPERTIES POSITION ARE HERE                                   G R O U P   P R O P E R T I E S !!!
+    bird1.centerY-=bird1.dy
+    if(bird1.centerY <= 335 or bird1.centerY >= 370):
+        bird1.dy=-bird1.dy
+        
+    bird2.centerY-=bird2.dy
+    if(bird2.centerY<= 332 or bird2.centerY >= 371):
+        bird2.dy=-bird2.dy
+    ###### app.stepsPerSecond ARE HERE !!!                                      app.stepsPerSecond  ARE   HERE !!!!
+    app.stepsPerSecond=30
+    
+    if(live1.visible==False):
+        app.stepsPerSecond=60
+    if(live2.visible==False):
+        app.stepsPerSecond=90
+    if(app.earsOn == False):
+        player.remove(ears)
+    
+    sun.points+=10  
+    shine.centerX=sun.centerX
+    shine.centerY=sun.centerY
+    shine2.centerX=shine2.centerX
+    shine2.center=shine2.centerY
+    if(sun.centerX< 195):
+        sun.centerX+=8
+    if(sun.centerY > 40):
+        sun.centerY-=7
+        
+    if(app.ability2==True):
+        ##### GROUP METHOD IS HERE!!                                            G R O U P     M E T H O D !!!!!!!!!!
+        app.group.remove(maze)
+        app.mazeOn=False
+        
+    if(app.ability3==True):
+        moutains.toBack()
+        
+    cloud1.centerX+=cloud1.dx
+    cloud2.centerX+=cloud2.dx
+    
+    if(cloud1.right >= 400 or cloud1.left <= 0):
+        cloud1.dx=-cloud1.dx
+    if(cloud2.left <=0 or cloud2.right >= 400):
+        cloud2.dx=-cloud2.dx
+        
+    object1.rotateAngle+=2
+    object2.rotateAngle+=3
+    object3.rotateAngle-=4
+    object4.rotateAngle-=5
+      
+        
+def onKeyHold(keys):
+    ###### AN OBJECT THAT IS CONTROLLED BY KEYS                                 O B J E C T   W I T H    K E Y S !!
+    if('up' in keys):
+        player.centerY-=player.dy
+    if('down' in keys):
+        player.centerY+=player.dy
+    if('right' in keys):
+        player.centerX+=player.dx
+    if('left' in keys):
+        player.centerX-=player.dx
+        
+    if(app.ability1 == True):
+        if('a' in keys):
+            if(body.radius > 1):
+                body.radius-=0.5
+        if('s' in keys):
+            if(body.radius < 8):
+                body.radius+=0.5
+                
+def onKeyPress(key):
+    if(key == 'i'):
+        if(instruction.visible==False):
+            instruction.visible=True
+        else:
+            instruction.visible=False
+    if(key == 'z'):
+        app.earsOn=False
+    
+def onKeyRelease(key):
+    #Object abilities
+    ###### GROUP METHOD                                                         G R O U P   M E T H O D  !!!!!!!!!!!!
+    if(player.hitsShape(object1) == True):
+        app.ability1=True
+        app.group.remove(object1)
+        reminder.visible=True
+        
+    if(player.hitsShape(object2) == True):
+        app.ability2=True
+        app.group.remove(object2)
+    
+    if(player.hitsShape(object3) == True):
+        app.ability3=True
+        app.group.remove(object3)
+        
+    if(player.hitsShape(object4)==True):
+        app.ability4=True
+        app.group.remove(object4)
+        
+    if(app.ability4 == True):
+        moves.value+=3
+        app.ability4=False
+    
+    if(player.hitsShape(border) == True or not base.containsShape(player)):
+        moves.value -=1
+        player.centerX=64
+        player.centerY=112
+    
+    ###### GROUP METHOD                                                         G R O U P   M E T H O D  !!!!!!!!!!!!!    
+    if(House.containsShape(player) == True):
+        player.fill='white'
+        gameWinning.toFront()
+        app.group.clear()
+        gameWinning.visible=True
+        app.stop()
+    else:
+        player.fill='black'
+        gameWinning.visible=False
+    
+    if( 'up' == key or 'down' == key or 'right' == key or 'left' == key):
+        moves.value-=1
+    
+    if(app.mazeOn == True):   
+        if(player.hitsShape(maze) == True or maze.containsShape(player) == True):
+            moves.value-=1
+            player.centerX=64
+            player.centerY=112
+    
+    if(moves.value < 0 and app.life == 3):
+        app.life=2
+        live1.visible=False
+        live2.visible=True
+        live3.visible=True
+        resetGame()
+    elif(moves.value <0 and app.life == 2 ):
+        app.life = 1
+        live1.visible=False
+        live2.visible=False
+        live3.visible=True
+        resetGame()
+    elif(moves.value <0 and app.life == 1):
+        live1.visible=False
+        live2.visible=False
+        live3.visible=False
+        app.life = 0
+        live3.visible=False
+        app.group.clear()
+        gameOver.visible=True
+        gameOver.toFront()
+        app.stop()
+        
+    
+    
+    
+    
